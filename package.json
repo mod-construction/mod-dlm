@@ -1,0 +1,24 @@
+{
+  "name": "mod-dlm",
+  "version": "1.0.0",
+  "description": "mod-lang is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mod-construction/mod-dlm.git"
+  },
+  "keywords": [
+    "mod",
+    "prefab",
+    "dsl"
+  ],
+  "author": "@maveric1977",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mod-construction/mod-dlm/issues"
+  },
+  "homepage": "https://github.com/mod-construction/mod-dlm#readme"
+}
