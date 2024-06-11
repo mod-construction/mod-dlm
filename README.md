@@ -60,8 +60,3 @@ Validates the definition.
 Interested in contributing to this project? Here are some ways you can support us:
 
 - Submit a pull request.
-- Star us on Github.
-- Tell a friend or colleague about us (or Tweet about us).
-- Write an article or blog post. Let us know by opening an issue with a link to the article.
-- Looking to build a modern documentation workflow? Our [commercial products](https://redoc.ly) can help you maintain and deploy API reference docs and developer portals.
-
