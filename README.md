@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://tsoa-community.github.io/docs/" target="blank">
+  <a href="https://mod.construction/docs/" target="blank">
 <img src="assets/mod-dlm-logo.png" alt="mod-dlm-logo" width="200"/>
   </a>
 
