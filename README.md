@@ -1,4 +1,15 @@
+<div align="center">
+  <a href="https://tsoa-community.github.io/docs/" target="blank">
 <img src="assets/mod-dlm-logo.png" alt="mod-dlm-logo" width="200"/>
+  </a>
+
+Open source domain specific language to describe prefab construction elements.
+
+
+![build status](https://github.com/lukeautry/tsoa/actions/workflows/runTestsOnPush.yml/badge.svg)
+[![npm version](https://img.shields.io/npm/v/tsoa/latest)](https://www.npmjs.com/package/tsoa)
+
+</div>
 
 # mod-dlm
 
