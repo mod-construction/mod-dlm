@@ -55,8 +55,8 @@ Bundles the definition to the dist folder.
 #### `npm test`
 Validates the definition.
 
-## Contribute
+## Help wanted
 
-Interested in contributing to this project? Here are some ways you can support us:
+### Contributing code
 
-- Submit a pull request.
+To contribute create an issue and open a pull-request.
