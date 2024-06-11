@@ -1,3 +1,4 @@
+<img src="assets/mod-dlm-logo.png" alt="mod-dlm-logo" width="200"/>
 # mod-dlm
 
 **mod-dlm** is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.
