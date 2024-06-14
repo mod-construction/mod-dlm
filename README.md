@@ -11,28 +11,6 @@ Open source domain specific language to describe prefab construction elements.
 
 </div>
 
-## Supporting partners
-<div style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 0px; gap: 40px; position: relative;">
-   <a href="https://mod.construction/" target="_blank" style="text-decoration: none;">
-      <img src="assets/mod-logo.png" alt="mod-dlm-logo" />
-   </a>
-   <a href="https://opensource.construction/" target="_blank" style="text-decoration: none;">
-      <img src="assets/opensource_construction_logo.png" alt="opensource.construction"/>
-   </a>
-   <a href="https://cee.stanford.edu/" target="_blank" style="text-decoration: none;">
-      <img src="assets/stanford-university-logo.png" alt="stanford"/>
-   </a>
-   <a href="https://dfab.ch/" target="_blank" style="text-decoration: none;">
-      <img src="assets/dfab_logo.png" alt="dfab logo"/>
-   </a>
-   <a href="https://arch.ethz.ch/" target="_blank" style="text-decoration: none;">
-      <img src="assets/eth_logo.png" alt="eth logo" />
-   </a>
-   <a href="https://www.zhaw.ch/" target="_blank" style="text-decoration: none;">
-      <img src="assets/zhaw_logo.png" alt="zhaw logo" />
-   </a>
-</div>
-
 
 # mod-dlm
 
