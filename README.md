@@ -1,4 +1,4 @@
-<div aspangn="center">
+<div align="center">
   <a href="https://mod.construction/docs/" target="_blank">
 <img src="assets/mod-dlm-logo.png" alt="mod-dlm-logo" width="200"/>
   </a>
