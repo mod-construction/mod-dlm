@@ -1,13 +1,11 @@
 import { z } from "zod";
-import { ProductMaterialAttributesSchema } from "./types/productMaterialAttributesSchema";
-import { BuildingSystemEnum, ProductCategoryEnum } from "./types/enums";
-import { DimensionalAttributesSchema } from "./types/dimensionalAttributesSchema";
-import { PerformanceAttributesSchema } from "./types/performanceAttributesSchema";
-import { SustainabilityAttributesSchema } from "./types/sustainabilityAttributesSchema";
+import { ProductMaterialAttributesSchema } from "./productMaterialAttributesSchema";
+import { BuildingSystemEnum, ProductCategoryEnum } from "./enums";
+import { DimensionalAttributesSchema } from "./dimensionalAttributesSchema";
+import { PerformanceAttributesSchema } from "./performanceAttributesSchema";
+import { SustainabilityAttributesSchema } from "./sustainabilityAttributesSchema";
 
 const ProductAttributesSchema = z.object({
-    title: z.string(),
-    supplier: z.string(),
     images: z.array(z.string()),
     buildingSystem: BuildingSystemEnum,
     productCategory: ProductCategoryEnum,

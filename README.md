@@ -15,6 +15,28 @@ Open source domain specific language to describe prefab construction elements.
 
 **mod-dlm** is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.
 
+## Supporting partners
+<div align="center">
+    <a href="https://mod.construction/" target="blank">
+        <img src="assets/mod-logo.png" alt="mod-dlm-logo" width="100" style="margin: 0 10px"/>
+    </a>
+    <a href="https://cee.stanford.edu/" target="blank">
+        <img src="assets/stanford-university-logo.png" alt="stanford" width="100" style="margin: 0 10px"/>
+    </a>
+    <a href="https://dfab.ch/" target="blank">
+        <img src="assets/dfab_logo.png" alt="dfab logo" width="100" style="margin: 0 10px"/>
+    </a>
+    <a href="https://arch.ethz.ch/" target="blank">
+        <img src="assets/eth_logo.png" alt="eth logo" width="100" style="margin: 0 10px"/>
+    </a>
+    <a href="https://www.zhaw.ch/" target="blank">
+        <img src="assets/zhaw_logo.png" alt="zhaw logo" width="100" style="margin: 0 10px"/>
+    </a>
+    <a href="https://opensource.construction/" target="blank">
+        <img src="assets/opensource_construction_logo.svg" alt="opensource.construction" width="100" style="margin: 0 10px"/>
+    </a>
+</div>
+
 ## Table of Contents
 - [Features](#features)
 - [Getting Started](#getting-started)

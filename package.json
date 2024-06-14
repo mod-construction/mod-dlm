@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "start:dev": "npx nodemon",
-    "build": "rimraf ./build && tsc",
+    "clean": "rimraf ./build",
+    "build": "npx ts-node src/index.ts",
     "start": "npm run build && node build/index.js"
   },
   "repository": {
@@ -35,6 +36,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "yaml": "^2.4.5",
     "zod": "^3.23.8",
     "zod-openapi": "^2.18.0"
   }
