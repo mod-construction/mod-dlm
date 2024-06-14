@@ -18,19 +18,19 @@ Open source domain specific language to describe prefab construction elements.
 ## Supporting partners
 <div align="center">
     <a href="https://mod.construction/" target="blank">
-        <img src="assets/mod-logo.png" alt="mod-dlm-logo" width="100" style="margin: 0 10px"/>
+        <img src="assets/mod-logo.png" alt="mod-dlm-logo" height="36" style="margin: 0 10px"/>
     </a>
     <a href="https://cee.stanford.edu/" target="blank">
-        <img src="assets/stanford-university-logo.png" alt="stanford" width="100" style="margin: 0 10px"/>
+        <img src="assets/stanford-university-logo.png" alt="stanford" height="36" style="margin: 0 10px"/>
     </a>
     <a href="https://dfab.ch/" target="blank">
-        <img src="assets/dfab_logo.png" alt="dfab logo" width="100" style="margin: 0 10px"/>
+        <img src="assets/dfab_logo.png" alt="dfab logo" height="36" style="margin: 0 10px"/>
     </a>
     <a href="https://arch.ethz.ch/" target="blank">
-        <img src="assets/eth_logo.png" alt="eth logo" width="100" style="margin: 0 10px"/>
+        <img src="assets/eth_logo.png" alt="eth logo" height="36" style="margin: 0 10px"/>
     </a>
     <a href="https://www.zhaw.ch/" target="blank">
-        <img src="assets/zhaw_logo.png" alt="zhaw logo" width="100" style="margin: 0 10px"/>
+        <img src="assets/zhaw_logo.png" alt="zhaw logo" height="36" style="margin: 0 10px"/>
     </a>
     <a href="https://opensource.construction/" target="blank">
         <img src="assets/opensource_construction_logo.svg" alt="opensource.construction" width="100" style="margin: 0 10px"/>
