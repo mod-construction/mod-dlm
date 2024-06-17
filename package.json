@@ -5,11 +5,10 @@
   "main": "src/index.ts",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "clean": "rimraf openapi",
+    "clean": "rimraf openapi && rimraf docs",
     "gendoc": "npx ts-node src/index.ts",
     "start": "redocly preview-docs",
-    "build": "redocly bundle -o dist/bundle.yaml",
-    "test": "redocly lint"
+    "build": "redocly build-docs -o openapi/index.html"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,6 @@
   },
   "homepage": "https://github.com/mod-construction/mod-dlm#readme",
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.4",
     "@types/node": "^20.14.2",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",

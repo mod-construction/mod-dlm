@@ -11,12 +11,18 @@ const document = createDocument({
         title: "mod-dlm API",
         description: "mod-dlm is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.",
         version: "1.0.0",
+        contact: {
+            name: "Contact us",
+            url: "https://mod.construction",
+            email: "info@mod.construction"
+
+        },
         license: {
             name: "MIT",
             url: "https://github.com/mod-construction/mod-dlm/blob/main/LICENSE"
         },
         "x-logo": {
-            url: "/assets/mod-dlm-logo.png",
+            url: "../assets/mod-dlm-logo.png",
             backgroundColor: "#FFFFFF",
             altText: "mod-dlm logo"
         }
