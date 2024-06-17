@@ -14,7 +14,7 @@ jobs:
         run: |
           npm ci
           npm run gendoc
-          npm run build
+          npm run build-site
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
