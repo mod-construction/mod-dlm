@@ -25,8 +25,8 @@ servers:
   - url: https://mod.construction
     description: The production server.
 security:
-  - bearerAuth: []
-    apikey: []
+  - apiKey: []
+    bearer: []
 paths:
   /element:
     get:
@@ -76,16 +76,16 @@ paths:
           description: Authorization information is missing or invalid.
 components:
   securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: An embedded jason web token.
     apiKey:
       type: apiKey
       in: header
       name: X-API-KEY
       description: API key for programmatic access.
+    bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: An embedded jason web token.
   schemas:
     ElementId:
       type: string
