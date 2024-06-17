@@ -1,5 +1,5 @@
 {
-  "name": "mod-dlm",
+  "name": "@mod/mod-dlm",
   "version": "1.0.0",
   "description": "mod-dlm is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.",
   "main": "./dist/index.js",
@@ -35,6 +35,7 @@
   "homepage": "https://github.com/mod-construction/mod-dlm#readme",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.13.4",
+    "@redocly/cli": "^1.15.0",
     "@types/node": "^20.14.2",
     "@typescript-eslint/eslint-plugin": "^7.13.0",
     "@typescript-eslint/parser": "^7.13.0",
@@ -43,12 +44,11 @@
     "rimraf": "^5.0.7",
     "ts-node": "^10.9.2",
     "tsup": "^8.1.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "yaml": "^2.4.5",
+    "zod-openapi": "^2.18.0"
   },
   "dependencies": {
-    "@redocly/cli": "^1.15.0",
-    "yaml": "^2.4.5",
-    "zod": "^3.23.8",
-    "zod-openapi": "^2.18.0"
+    "zod": "^3.23.8"
   }
 }
