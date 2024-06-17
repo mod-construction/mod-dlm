@@ -8,7 +8,7 @@
     "clean": "rimraf openapi && rimraf docs",
     "gendoc": "npx ts-node src/index.ts",
     "start": "redocly preview-docs",
-    "build": "redocly build-docs -o openapi/index.html"
+    "build": "redocly build-docs -o build/index.html"
   },
   "repository": {
     "type": "git",
