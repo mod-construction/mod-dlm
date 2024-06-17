@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: API Docs
 on: [push]
 permissions:
   contents: write
