@@ -25,7 +25,8 @@ servers:
   - url: https://mod.construction
     description: The production server.
 security:
-  - s2sauth: []
+  - bearerAuth: []
+    apikey: []
 paths:
   /element:
     get:
@@ -75,11 +76,16 @@ paths:
           description: Authorization information is missing or invalid.
 components:
   securitySchemes:
-    s2sauth:
+    bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: An s2s token issued by an allow listed consumer
+      description: An embedded jason web token.
+    apiKey:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+      description: API key for programmatic access.
   schemas:
     ElementId:
       type: string
