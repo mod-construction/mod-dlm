@@ -29,18 +29,18 @@ const document = createDocument({
     },
     components: {
         securitySchemes: {
-            bearerAuth: {
-                type: "http",
-                scheme: "bearer",
-                bearerFormat: "JWT",
-                description: "An embedded jason web token."
-            },
             apiKey: {
                 type: "apiKey",
                 in: "header",
                 name: "X-API-KEY",
                 description: "API key for programmatic access."
             },
+            bearer: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT",
+                description: "An embedded jason web token."
+            }
         },
     },
     servers: [
@@ -55,8 +55,8 @@ const document = createDocument({
     ],
     security: [
         {
-            bearerAuth: [],
-            apikey: [],
+            apiKey: [],
+            bearer: [],
         },
     ],
     paths: {
