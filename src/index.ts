@@ -22,7 +22,7 @@ const document = createDocument({
             url: "https://github.com/mod-construction/mod-dlm/blob/main/LICENSE"
         },
         "x-logo": {
-            url: "../assets/mod-dlm-logo.png",
+            url: "mod-dlm-logo.png",
             backgroundColor: "#FFFFFF",
             altText: "mod-dlm logo"
         }
