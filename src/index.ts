@@ -29,11 +29,17 @@ const document = createDocument({
     },
     components: {
         securitySchemes: {
-            s2sauth: {
-                type: 'http',
-                scheme: 'bearer',
-                bearerFormat: 'JWT',
-                description: 'An s2s token issued by an allow listed consumer',
+            bearerAuth: {
+                type: "http",
+                scheme: "bearer",
+                bearerFormat: "JWT",
+                description: "An embedded jason web token."
+            },
+            apiKey: {
+                type: "apiKey",
+                in: "header",
+                name: "X-API-KEY",
+                description: "API key for programmatic access."
             },
         },
     },
@@ -49,7 +55,8 @@ const document = createDocument({
     ],
     security: [
         {
-            s2sauth: [],
+            bearerAuth: [],
+            apikey: [],
         },
     ],
     paths: {
@@ -62,7 +69,7 @@ const document = createDocument({
 
 const yaml = stringify(document, { aliasDuplicateObjects: false });
 const dir = "openapi"
-if (!fs.existsSync(dir)){
+if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
 }
 fs.writeFileSync(path.join(dir, 'openapi.yaml'), yaml);
