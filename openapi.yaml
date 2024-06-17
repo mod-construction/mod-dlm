@@ -1,0 +1,449 @@
+openapi: 3.1.0
+info:
+  title: mod-dlm API
+  description: mod-dlm is an open source project designed to create a
+    domain-specific language (DSL) for describing prefab elements in the
+    Architecture, Engineering, and Construction (AEC) industry. This project
+    provides tools for defining entity models and automatically generating CRUD
+    APIs, enabling suppliers to create and manage catalogs of their products
+    easily.
+  version: 1.0.0
+  contact:
+    name: Contact us
+    url: https://mod.construction
+    email: info@mod.construction
+  license:
+    name: MIT
+    url: https://github.com/mod-construction/mod-dlm/blob/main/LICENSE
+  x-logo:
+    url: ../assets/mod-dlm-logo.png
+    backgroundColor: "#FFFFFF"
+    altText: mod-dlm logo
+servers:
+  - url: http://localhost:8080
+    description: The dev server.
+  - url: https://mod.construction
+    description: The production server.
+security:
+  - s2sauth: []
+paths:
+  /element:
+    get:
+      operationId: getElement
+      summary: Get an element
+      description: Gets an element from the database.
+      parameters:
+        - in: path
+          name: id
+          description: A unique identifier for an element
+          schema:
+            $ref: "#/components/schemas/ElementId"
+          required: true
+      responses:
+        "200":
+          description: The element was retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PrefabElement"
+        "400":
+          description: Bad request.
+        "401":
+          description: Authorization information is missing or invalid.
+        "404":
+          description: An element with the specified ID was not found.
+    post:
+      operationId: createElement
+      summary: Create a new element
+      description: Creates a new element in the database.
+      requestBody:
+        description: The element to create.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ElementCreate"
+      responses:
+        "201":
+          description: The element was created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PrefabElement"
+        "400":
+          description: Bad request.
+        "401":
+          description: Authorization information is missing or invalid.
+components:
+  securitySchemes:
+    s2sauth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: An s2s token issued by an allow listed consumer
+  schemas:
+    ElementId:
+      type: string
+      format: uuid
+      description: A unique identifier for an element
+      example: 4dd643ff-7ec7-4666-9c88-50b7d3da34e4
+    PrefabElement:
+      type: object
+      properties:
+        id:
+          $ref: "#/components/schemas/ElementId"
+        name:
+          type: string
+        description:
+          type: string
+        boundingBox:
+          type: object
+          properties:
+            width:
+              type: number
+            height:
+              type: number
+            depth:
+              type: number
+          required:
+            - width
+            - height
+            - depth
+          description: The bounding box of an element in millimeters.
+        images:
+          type: array
+          items:
+            type: string
+        buildingSystem:
+          type: string
+          enum:
+            - Wall
+            - Balcony
+            - Pod
+            - Frame
+            - Facade
+            - Floors
+            - Modules
+            - Plants
+            - Roofs
+            - Stairs
+        productCategory:
+          type: string
+          enum:
+            - Boarding
+            - Solid Wall Panels
+            - Closed Wall Panels
+            - Twinwall
+            - Open Wall Panels
+            - Structural Insulated Panels (SIPs)
+            - Insulated Concrete Panels
+            - Prefabricated Balcony
+            - Pod
+            - Whole Building System
+            - Structural Frame
+            - Facade System
+            - Hollowcore Floor
+            - Concrete Lattice Floor
+            - Floor Cassettes
+            - Solid Floor Panels
+            - Volumetric module
+            - Prefabricated Plant
+            - Roof Panel
+            - Roof Truss
+            - Prefabricated Stairs
+        material:
+          type: object
+          properties:
+            finishMaterial:
+              type: string
+              enum:
+                - Timber
+                - Steel
+                - Concrete
+                - Hybrid
+                - Other
+            structuralMaterial:
+              type: string
+              enum:
+                - Timber
+                - Steel
+                - Concrete
+                - Hybrid
+                - Other
+          required:
+            - finishMaterial
+            - structuralMaterial
+        dimensional:
+          type: object
+          properties:
+            width:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+              required:
+                - min
+                - max
+            height:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+              required:
+                - min
+                - max
+            length:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+              required:
+                - min
+                - max
+          required:
+            - width
+            - height
+            - length
+        performance:
+          type: object
+          properties:
+            resistanceToFireClassification:
+              type: string
+            thermalTransmittance:
+              type: number
+            airborneSoundInsulation:
+              type: number
+          required:
+            - resistanceToFireClassification
+            - thermalTransmittance
+            - airborneSoundInsulation
+        sustainability:
+          type: object
+          properties:
+            countryOfManufacturing:
+              type: string
+            classification:
+              type: string
+          required:
+            - countryOfManufacturing
+            - classification
+        documentationAndCompliance:
+          type: object
+          properties:
+            technicalSpecifications:
+              type: string
+            certifications:
+              type: object
+              properties:
+                certificationTypes:
+                  type: array
+                  items:
+                    type: string
+                regulatoryApprovals:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - certificationTypes
+                - regulatoryApprovals
+          required:
+            - technicalSpecifications
+            - certifications
+      required:
+        - id
+        - name
+        - description
+        - boundingBox
+        - images
+        - buildingSystem
+        - productCategory
+        - material
+        - dimensional
+        - performance
+        - sustainability
+        - documentationAndCompliance
+      description: Prefab Element
+    ElementCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        boundingBox:
+          type: object
+          properties:
+            width:
+              type: number
+            height:
+              type: number
+            depth:
+              type: number
+          required:
+            - width
+            - height
+            - depth
+          description: The bounding box of an element in millimeters.
+        images:
+          type: array
+          items:
+            type: string
+        buildingSystem:
+          type: string
+          enum:
+            - Wall
+            - Balcony
+            - Pod
+            - Frame
+            - Facade
+            - Floors
+            - Modules
+            - Plants
+            - Roofs
+            - Stairs
+        productCategory:
+          type: string
+          enum:
+            - Boarding
+            - Solid Wall Panels
+            - Closed Wall Panels
+            - Twinwall
+            - Open Wall Panels
+            - Structural Insulated Panels (SIPs)
+            - Insulated Concrete Panels
+            - Prefabricated Balcony
+            - Pod
+            - Whole Building System
+            - Structural Frame
+            - Facade System
+            - Hollowcore Floor
+            - Concrete Lattice Floor
+            - Floor Cassettes
+            - Solid Floor Panels
+            - Volumetric module
+            - Prefabricated Plant
+            - Roof Panel
+            - Roof Truss
+            - Prefabricated Stairs
+        material:
+          type: object
+          properties:
+            finishMaterial:
+              type: string
+              enum:
+                - Timber
+                - Steel
+                - Concrete
+                - Hybrid
+                - Other
+            structuralMaterial:
+              type: string
+              enum:
+                - Timber
+                - Steel
+                - Concrete
+                - Hybrid
+                - Other
+          required:
+            - finishMaterial
+            - structuralMaterial
+        dimensional:
+          type: object
+          properties:
+            width:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+              required:
+                - min
+                - max
+            height:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+              required:
+                - min
+                - max
+            length:
+              type: object
+              properties:
+                min:
+                  type: number
+                max:
+                  type: number
+              required:
+                - min
+                - max
+          required:
+            - width
+            - height
+            - length
+        performance:
+          type: object
+          properties:
+            resistanceToFireClassification:
+              type: string
+            thermalTransmittance:
+              type: number
+            airborneSoundInsulation:
+              type: number
+          required:
+            - resistanceToFireClassification
+            - thermalTransmittance
+            - airborneSoundInsulation
+        sustainability:
+          type: object
+          properties:
+            countryOfManufacturing:
+              type: string
+            classification:
+              type: string
+          required:
+            - countryOfManufacturing
+            - classification
+        documentationAndCompliance:
+          type: object
+          properties:
+            technicalSpecifications:
+              type: string
+            certifications:
+              type: object
+              properties:
+                certificationTypes:
+                  type: array
+                  items:
+                    type: string
+                regulatoryApprovals:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - certificationTypes
+                - regulatoryApprovals
+          required:
+            - technicalSpecifications
+            - certifications
+      required:
+        - name
+        - description
+        - boundingBox
+        - images
+        - buildingSystem
+        - productCategory
+        - material
+        - dimensional
+        - performance
+        - sustainability
+        - documentationAndCompliance
+      description: An element to create.
