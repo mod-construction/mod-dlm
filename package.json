@@ -2,12 +2,18 @@
   "name": "mod-dlm",
   "version": "1.0.0",
   "description": "mod-dlm is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "gendoc": "npx ts-node src/index.ts",
+    "gendoc": "npx ts-node src/createApiDocs.ts",
     "start": "redocly preview-docs",
     "build": "redocly build-docs -o openapi/index.html",
+    "package": "tsup src/index.ts",
     "gen-client-cs": "openapi-generator-cli generate -i openapi/openapi.yaml -g csharp -o code_gen/csharp",
     "gen-client-ts": "openapi-generator-cli generate -i openapi/openapi.yaml -g typescript-node -o code_gen/ts-node --additional-properties=supportsES6=true,typescriptThreePlus=true,npmVersion=1.0.0,npmName=mod-dlm-client,npmRepository=git+ssh://git@github.com/mod-construction/mod-dlm-client.git",
     "gen-server-py": "openapi-generator-cli generate -i openapi/openapi.yaml -g python-fastapi -o code_gen/fastapi --additional-properties=packageName=mod_dlm_server,packageVersion=1.0.0"
@@ -36,6 +42,7 @@
     "nodemon": "^3.1.3",
     "rimraf": "^5.0.7",
     "ts-node": "^10.9.2",
+    "tsup": "^8.1.0",
     "typescript": "^5.4.5"
   },
   "dependencies": {

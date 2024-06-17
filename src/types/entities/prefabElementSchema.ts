@@ -35,4 +35,6 @@ const PrefabElementSchema = z.object({
     ref: "PrefabElement"
 });
 
-export { ElementIdSchema, PrefabElementSchema };
+type PrefabElement = z.infer<typeof PrefabElementSchema>;
+
+export { ElementIdSchema, PrefabElementSchema, PrefabElement };
