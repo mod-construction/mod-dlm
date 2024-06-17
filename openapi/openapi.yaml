@@ -1,11 +1,22 @@
 openapi: 3.1.0
 info:
   title: MOD-dlm API
-  description: A CRUD API to manage prefab elements using the open-source MOD-dlm
+  description: >-
+    A CRUD API to manage prefab elements using the open-source MOD-dlm. 
+
+    mod-dlm is an open source project designed to create a domain-specific
+    language (DSL) for describing prefab elements in the Architecture,
+    Engineering, and Construction (AEC) industry. This project provides tools
+    for defining entity models and automatically generating CRUD APIs, enabling
+    suppliers to create and manage catalogs of their products easily.
   version: 1.0.0
   license:
     name: MIT
-    url: https://opensource.org/licenses/MIT
+    url: https://github.com/mod-construction/mod-dlm/blob/main/LICENSE
+  x-logo:
+    url: /assets/mod-dlm-logo.png
+    backgroundColor: "#FFFFFF"
+    altText: mod-dlm logo
 servers:
   - url: http://localhost:8080
     description: The dev server.
@@ -33,6 +44,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PrefabElement"
+        "400":
+          description: Bad request.
+        "401":
+          description: Authorization information is missing or invalid.
+        "404":
+          description: An element with the specified ID was not found.
     post:
       operationId: createElement
       summary: Create a new element
@@ -50,6 +67,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PrefabElement"
+        "400":
+          description: Bad request.
+        "401":
+          description: Authorization information is missing or invalid.
 components:
   securitySchemes:
     s2sauth:

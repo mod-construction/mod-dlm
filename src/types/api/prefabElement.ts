@@ -7,6 +7,16 @@ const ElementCreateSchema = PrefabElementSchema.omit({ id: true }).openapi({
     description: "An element to create.",
 });
 
+export const GetElementQuerySchema = z
+    .strictObject({
+        /**
+         * A unique identifier for an element
+         * @example "4dd643ff-7ec7-4666-9c88-50b7d3da34e4"
+         */
+        id: ElementIdSchema,
+    })
+    .openapi({ description: 'Get Element Query Parameters' });
+
 const createElementOperation: ZodOpenApiOperationObject = {
     operationId: "createElement",
     summary: "Create a new element",
@@ -28,6 +38,8 @@ const createElementOperation: ZodOpenApiOperationObject = {
                 },
             },
         },
+        "400": { description: "Bad request." },
+        "401": { description: "Authorization information is missing or invalid." },
     },
 };
 
@@ -36,7 +48,7 @@ const getElementOperation: ZodOpenApiOperationObject = {
     summary: "Get an element",
     description: "Gets an element from the database.",
     requestParams: {
-        path: z.object({ id: ElementIdSchema }),
+        query: GetElementQuerySchema,
     },
     responses: {
         "200": {
@@ -47,6 +59,9 @@ const getElementOperation: ZodOpenApiOperationObject = {
                 },
             },
         },
+        "400": { description: "Bad request." },
+        "401": { description: "Authorization information is missing or invalid." },
+        "404": { description: "An element with the specified ID was not found." },
     },
 };
 

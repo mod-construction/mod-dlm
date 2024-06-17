@@ -8,12 +8,17 @@ import path from "node:path";
 const document = createDocument({
     openapi: "3.1.0",
     info: {
-        title: "MOD-dlm API",
-        description: "A CRUD API to manage prefab elements using the open-source MOD-dlm",
+        title: "mod-dlm API",
+        description: "mod-dlm is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.",
         version: "1.0.0",
         license: {
             name: "MIT",
-            url: "https://opensource.org/licenses/MIT"
+            url: "https://github.com/mod-construction/mod-dlm/blob/main/LICENSE"
+        },
+        "x-logo": {
+            url: "/assets/mod-dlm-logo.png",
+            backgroundColor: "#FFFFFF",
+            altText: "mod-dlm logo"
         }
     },
     components: {
@@ -50,7 +55,7 @@ const document = createDocument({
 });
 
 const yaml = stringify(document, { aliasDuplicateObjects: false });
-const dir = "build"
+const dir = "openapi"
 if (!fs.existsSync(dir)){
     fs.mkdirSync(dir);
 }
