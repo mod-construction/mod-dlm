@@ -1,4 +1,2 @@
-import * as modDlm from "./types/types";
-
-export { modDlm };
-export default modDlm;
+import "zod-openapi/extend";
+export *  from "./types/types";
