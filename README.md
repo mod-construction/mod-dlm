@@ -6,8 +6,9 @@
 Open source domain specific language to describe prefab construction elements.
 
 
-![build status](https://github.com/mod-construction/mod-dlm/actions/workflows/main.yml/badge.svg)
-[![npm version](https://img.shields.io/npm/v/tsoa/latest)](https://www.npmjs.com/package/tsoa)
+![build status](https://github.com/mod-construction/mod-dlm/actions/workflows/apidoc.yml/badge.svg)
+![build status](https://github.com/mod-construction/mod-dlm/actions/workflows/publish.yml/badge.svg)
+[![npm version](https://img.shields.io/npm/v/@mod-construction/mod-dlm/latest)](https://www.npmjs.com/package/@mod-construction/mod-dlm)
 
 </div>
 
