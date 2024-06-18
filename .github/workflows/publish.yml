@@ -1,3 +1,4 @@
+name: Publish npm package
 on:
   push:
     branches: main
