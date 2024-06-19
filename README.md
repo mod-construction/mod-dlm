@@ -190,10 +190,10 @@ if (validation.success) {
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+We appreciate feedback and contribution to this project! Before you get started, please see the following:
 
-Please make sure to update tests as appropriate.
+* [Contribution guidelines](CONTRIBUTING.md)
+* [Code of conduct](CODE_OF_CONDUCT.md)
 
 ## License
 
