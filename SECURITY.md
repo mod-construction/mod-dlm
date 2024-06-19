@@ -1,9 +1,7 @@
 # Security Policy
 
 ## Supported Versions
-
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+The following versions are supported. If you have found a security issue with an older version of, we encourage you to use the latest version.
 
 | Version | Supported          |
 | ------- | ------------------ |
