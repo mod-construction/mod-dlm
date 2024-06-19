@@ -188,8 +188,13 @@ if (validation.success) {
 }
 ```
 
-## Help wanted
+## Contributing
 
-### Contributing code
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
 
-To contribute create an issue and open a pull-request.
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](LICENSE)
