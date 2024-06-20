@@ -54,10 +54,10 @@ You can always find the most up-to-date API documentation here: https://mod-cons
 - Typescript (recommended)
 
 ### Installation
-1. **Clone the Repository**:
-   ```bash
-   npm install @mod-construction/mod-dlm@latest -D
-   ```
+
+```bash
+npm install @mod-construction/mod-dlm@latest -D
+```
 
 ### Usage
 You can use **mod-dlm** in different scenarios. 
