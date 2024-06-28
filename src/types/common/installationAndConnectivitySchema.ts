@@ -1,9 +1,10 @@
 import { z } from "zod";
+import { CompatibilityEnum, ConnectionType } from "./enums";
 
 const InstallationAndConnectivitySchema = z.object({
-    connectionType: z.string().optional(),
+    connectionType: ConnectionType.optional(),
     installationTime: z.string().optional(),
-    compatibility: z.string().array().optional(),
+    compatibility: CompatibilityEnum.optional(),
 });
 
 export { InstallationAndConnectivitySchema };

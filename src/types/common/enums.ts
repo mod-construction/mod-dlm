@@ -36,26 +36,60 @@ const ProductCategoryEnum = z.enum([
     'Roof Truss',
     'Prefabricated Stairs'
 ]);
-const ProductCategoryGroupEnum = z.enum([
-    'Volumetric Systems',
-    'Structural2DSystems',
-    'NonSystemisedStructure',
-    'Printed3DSystems',
-    'Assemblies',
-    'ProductBasedImprovements',
-    'SiteBasedImprovements'
+
+const SeismicResistance = z.enum(['Zone 1', 'Zone 2', 'Zone 3', 'Zone 4']);
+const WindLoadResistance = z.enum(['Class A', 'Class B', 'Class C', 'Class D']);
+const SustainabilityClassification = z.enum(['A+', 'A', 'B', 'C', 'D']);
+const VOCEmissions = z.enum(['None', 'Low', 'Medium', 'High']);
+const Recyclability = z.enum(['0%', '25%', '50%', '75%', '100%']);
+const EnergyEfficiency = z.enum([
+    'R-1',
+    'R-2',
+    'R-5',
+    'Energy Star',
+    'LEED Certified',
+    'LEED Silver',
+    'LEED Gold',
+    'LEED Platinum'
 ]);
-const AvailabilityStatusEnum = z.enum([
-    'in_stock',
-    'out_of_stock',
-    'pre_order',
-    'discontinued'
+const ConnectionType = z.enum(['Bolt-on', 'Welded', 'Clip-on', 'Adhesive', 'Mortar']);
+
+// European standard EN 13501-1
+const FireResistanceEnum = z.enum([
+    'A1', // EN 13501-1: Non-combustible
+    'A2', // EN 13501-1: Limited combustibility
+    'B',  // EN 13501-1: Very limited contribution to fire
+    'C',  // EN 13501-1: Limited contribution to fire
+    'D',  // EN 13501-1: Acceptable contribution to fire
+    'E',  // EN 13501-1: Acceptable contribution to fire with a flashover
+    'F',  // EN 13501-1: No performance determined
+    '1-hour', // ASTM E119: 1-hour fire rating
+    '2-hour', // ASTM E119: 2-hour fire rating
+    '3-hour', // ASTM E119: 3-hour fire rating
+    '4-hour', // ASTM E119: 4-hour fire rating
+]);
+
+const CompatibilityEnum = z.enum([
+    'Steel Frame',
+    'Wood Frame',
+    'Concrete Structure',
+    'Brickwork',
+    'Modular Systems',
+    'Glass Facades',
+    'Composite Materials',
 ]);
 
 export {
     ProductMaterialEnum,
     BuildingSystemEnum,
     ProductCategoryEnum,
-    ProductCategoryGroupEnum,
-    AvailabilityStatusEnum
+    SeismicResistance,
+    WindLoadResistance,
+    SustainabilityClassification,
+    VOCEmissions,
+    Recyclability,
+    EnergyEfficiency,
+    ConnectionType,
+    FireResistanceEnum,
+    CompatibilityEnum
 }

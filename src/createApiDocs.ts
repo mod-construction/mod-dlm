@@ -1,9 +1,9 @@
 import 'zod-openapi/extend';
-import { createDocument } from "zod-openapi";
-import { stringify } from "yaml";
-import { createElementOperation, getElementOperation } from "./types/api/prefabElement";
 import * as fs from "node:fs";
 import path from "node:path";
+import { stringify } from "yaml";
+import { createDocument } from "zod-openapi";
+import { createElementOperation, getElementOperation } from "./types/api/prefabElement";
 
 const document = createDocument({
     openapi: "3.1.0",
