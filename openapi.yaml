@@ -219,24 +219,71 @@ components:
           type: object
           properties:
             loadBearingCapacity:
-              type: number
+              type: object
+              properties:
+                maximumLoad:
+                  type: number
+                unit:
+                  type: string
+                  enum:
+                    - N
+                    - kN
+                    - lbf
+                    - kgf
+                loadDistribution:
+                  type: string
+              required:
+                - maximumLoad
+                - unit
+                - loadDistribution
             seismicResistance:
               type: string
+              enum:
+                - Zone 1
+                - Zone 2
+                - Zone 3
+                - Zone 4
             windLoadResistance:
               type: string
+              enum:
+                - Class A
+                - Class B
+                - Class C
+                - Class D
         performance:
           type: object
           properties:
             resistanceToFireClassification:
               type: string
+              enum:
+                - A1
+                - A2
+                - B
+                - C
+                - D
+                - E
+                - F
+                - 1-hour
+                - 2-hour
+                - 3-hour
+                - 4-hour
             thermalTransmittance:
               type: number
-            airborneSoundInsulation:
-              type: number
+              minimum: 0
+              maximum: 2
+            acousticProperties:
+              type: object
+              properties:
+                soundInsulationRating:
+                  type: string
+                acousticPerformance:
+                  type: string
+              required:
+                - soundInsulationRating
+                - acousticPerformance
           required:
             - resistanceToFireClassification
             - thermalTransmittance
-            - airborneSoundInsulation
         sustainability:
           type: object
           properties:
@@ -244,12 +291,38 @@ components:
               type: string
             classification:
               type: string
+              enum:
+                - A+
+                - A
+                - B
+                - C
+                - D
             VOCEmissions:
               type: string
+              enum:
+                - None
+                - Low
+                - Medium
+                - High
             recyclability:
-              type: number
+              type: string
+              enum:
+                - 0%
+                - 25%
+                - 50%
+                - 75%
+                - 100%
             energyEfficiency:
               type: string
+              enum:
+                - R-1
+                - R-2
+                - R-5
+                - Energy Star
+                - LEED Certified
+                - LEED Silver
+                - LEED Gold
+                - LEED Platinum
           required:
             - countryOfManufacturing
             - classification
@@ -280,12 +353,24 @@ components:
           properties:
             connectionType:
               type: string
+              enum:
+                - Bolt-on
+                - Welded
+                - Clip-on
+                - Adhesive
+                - Mortar
             installationTime:
               type: string
             compatibility:
-              type: array
-              items:
-                type: string
+              type: string
+              enum:
+                - Steel Frame
+                - Wood Frame
+                - Concrete Structure
+                - Brickwork
+                - Modular Systems
+                - Glass Facades
+                - Composite Materials
         lifecycleAndMaintenance:
           type: object
           properties:
@@ -449,24 +534,71 @@ components:
           type: object
           properties:
             loadBearingCapacity:
-              type: number
+              type: object
+              properties:
+                maximumLoad:
+                  type: number
+                unit:
+                  type: string
+                  enum:
+                    - N
+                    - kN
+                    - lbf
+                    - kgf
+                loadDistribution:
+                  type: string
+              required:
+                - maximumLoad
+                - unit
+                - loadDistribution
             seismicResistance:
               type: string
+              enum:
+                - Zone 1
+                - Zone 2
+                - Zone 3
+                - Zone 4
             windLoadResistance:
               type: string
+              enum:
+                - Class A
+                - Class B
+                - Class C
+                - Class D
         performance:
           type: object
           properties:
             resistanceToFireClassification:
               type: string
+              enum:
+                - A1
+                - A2
+                - B
+                - C
+                - D
+                - E
+                - F
+                - 1-hour
+                - 2-hour
+                - 3-hour
+                - 4-hour
             thermalTransmittance:
               type: number
-            airborneSoundInsulation:
-              type: number
+              minimum: 0
+              maximum: 2
+            acousticProperties:
+              type: object
+              properties:
+                soundInsulationRating:
+                  type: string
+                acousticPerformance:
+                  type: string
+              required:
+                - soundInsulationRating
+                - acousticPerformance
           required:
             - resistanceToFireClassification
             - thermalTransmittance
-            - airborneSoundInsulation
         sustainability:
           type: object
           properties:
@@ -474,12 +606,38 @@ components:
               type: string
             classification:
               type: string
+              enum:
+                - A+
+                - A
+                - B
+                - C
+                - D
             VOCEmissions:
               type: string
+              enum:
+                - None
+                - Low
+                - Medium
+                - High
             recyclability:
-              type: number
+              type: string
+              enum:
+                - 0%
+                - 25%
+                - 50%
+                - 75%
+                - 100%
             energyEfficiency:
               type: string
+              enum:
+                - R-1
+                - R-2
+                - R-5
+                - Energy Star
+                - LEED Certified
+                - LEED Silver
+                - LEED Gold
+                - LEED Platinum
           required:
             - countryOfManufacturing
             - classification
@@ -510,12 +668,24 @@ components:
           properties:
             connectionType:
               type: string
+              enum:
+                - Bolt-on
+                - Welded
+                - Clip-on
+                - Adhesive
+                - Mortar
             installationTime:
               type: string
             compatibility:
-              type: array
-              items:
-                type: string
+              type: string
+              enum:
+                - Steel Frame
+                - Wood Frame
+                - Concrete Structure
+                - Brickwork
+                - Modular Systems
+                - Glass Facades
+                - Composite Materials
         lifecycleAndMaintenance:
           type: object
           properties:
