@@ -215,6 +215,15 @@ components:
             - width
             - height
             - length
+        structuralProperties:
+          type: object
+          properties:
+            loadBearingCapacity:
+              type: number
+            seismicResistance:
+              type: string
+            windLoadResistance:
+              type: string
         performance:
           type: object
           properties:
@@ -234,6 +243,12 @@ components:
             countryOfManufacturing:
               type: string
             classification:
+              type: string
+            VOCEmissions:
+              type: string
+            recyclability:
+              type: number
+            energyEfficiency:
               type: string
           required:
             - countryOfManufacturing
@@ -260,6 +275,44 @@ components:
           required:
             - technicalSpecifications
             - certifications
+        installationAndConnectivity:
+          type: object
+          properties:
+            connectionType:
+              type: string
+            installationTime:
+              type: string
+            compatibility:
+              type: array
+              items:
+                type: string
+        lifecycleAndMaintenance:
+          type: object
+          properties:
+            expectedLifespan:
+              type: string
+            maintenanceRequirements:
+              type: string
+            warranty:
+              type: string
+        aestheticAndCustomizationOptions:
+          type: object
+          properties:
+            colorOptions:
+              type: array
+              items:
+                type: string
+            texture:
+              type: string
+            modularAdaptability:
+              type: string
+        economicFactors:
+          type: object
+          properties:
+            costPerUnit:
+              type: number
+            manufacturingLeadTime:
+              type: string
       required:
         - id
         - name
@@ -270,9 +323,6 @@ components:
         - productCategory
         - material
         - dimensional
-        - performance
-        - sustainability
-        - documentationAndCompliance
       description: Prefab Element
     ElementCreate:
       type: object
@@ -395,6 +445,15 @@ components:
             - width
             - height
             - length
+        structuralProperties:
+          type: object
+          properties:
+            loadBearingCapacity:
+              type: number
+            seismicResistance:
+              type: string
+            windLoadResistance:
+              type: string
         performance:
           type: object
           properties:
@@ -414,6 +473,12 @@ components:
             countryOfManufacturing:
               type: string
             classification:
+              type: string
+            VOCEmissions:
+              type: string
+            recyclability:
+              type: number
+            energyEfficiency:
               type: string
           required:
             - countryOfManufacturing
@@ -440,6 +505,44 @@ components:
           required:
             - technicalSpecifications
             - certifications
+        installationAndConnectivity:
+          type: object
+          properties:
+            connectionType:
+              type: string
+            installationTime:
+              type: string
+            compatibility:
+              type: array
+              items:
+                type: string
+        lifecycleAndMaintenance:
+          type: object
+          properties:
+            expectedLifespan:
+              type: string
+            maintenanceRequirements:
+              type: string
+            warranty:
+              type: string
+        aestheticAndCustomizationOptions:
+          type: object
+          properties:
+            colorOptions:
+              type: array
+              items:
+                type: string
+            texture:
+              type: string
+            modularAdaptability:
+              type: string
+        economicFactors:
+          type: object
+          properties:
+            costPerUnit:
+              type: number
+            manufacturingLeadTime:
+              type: string
       required:
         - name
         - description
@@ -449,7 +552,4 @@ components:
         - productCategory
         - material
         - dimensional
-        - performance
-        - sustainability
-        - documentationAndCompliance
       description: An element to create.
