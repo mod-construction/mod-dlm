@@ -1,11 +1,16 @@
 import { z } from "zod";
+import { AestheticAndCustomizationOptionsSchema } from "../common/aestheticAndCustomizationOptionsSchema";
 import { BoundingBoxSchema } from "../common/boundingBoxSchema";
-import { BuildingSystemEnum, ProductCategoryEnum } from "../common/enums";
-import { ProductMaterialAttributesSchema } from "../common/productMaterialAttributesSchema";
 import { DimensionalAttributesSchema } from "../common/dimensionalAttributesSchema";
-import { PerformanceAttributesSchema } from "../common/performanceAttributesSchema";
-import { SustainabilityAttributesSchema } from "../common/sustainabilityAttributesSchema";
 import { DocumentationAndComplianceSchema } from "../common/documentationAndComplianceSchema";
+import { EconomicFactorsSchema } from "../common/economicFactorsSchema";
+import { BuildingSystemEnum, ProductCategoryEnum } from "../common/enums";
+import { InstallationAndConnectivitySchema } from "../common/installationAndConnectivitySchema";
+import { LifecycleAndMaintenanceSchema } from "../common/lifecycleAndMaintenanceSchema";
+import { PerformanceAttributesSchema } from "../common/performanceAttributesSchema";
+import { ProductMaterialAttributesSchema } from "../common/productMaterialAttributesSchema";
+import { StructuralPropertiesSchema } from "../common/structuralPropertiesSchema";
+import { SustainabilityAttributesSchema } from "../common/sustainabilityAttributesSchema";
 
 const ElementIdSchema = z.string().uuid().openapi({
     description: "A unique identifier for an element",
@@ -27,9 +32,14 @@ const PrefabElementSchema = z.object({
     productCategory: ProductCategoryEnum,
     material: ProductMaterialAttributesSchema,
     dimensional: DimensionalAttributesSchema,
-    performance: PerformanceAttributesSchema,
-    sustainability: SustainabilityAttributesSchema,
-    documentationAndCompliance: DocumentationAndComplianceSchema,
+    structuralProperties: StructuralPropertiesSchema.optional(),
+    performance: PerformanceAttributesSchema.optional(),
+    sustainability: SustainabilityAttributesSchema.optional(),
+    documentationAndCompliance: DocumentationAndComplianceSchema.optional(),
+    installationAndConnectivity: InstallationAndConnectivitySchema.optional(),
+    lifecycleAndMaintenance: LifecycleAndMaintenanceSchema.optional(),
+    aestheticAndCustomizationOptions: AestheticAndCustomizationOptionsSchema.optional(),
+    economicFactors: EconomicFactorsSchema.optional(),
 }).openapi({
     description: "Prefab Element",
     ref: "PrefabElement"

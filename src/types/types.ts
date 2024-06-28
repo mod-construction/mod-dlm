@@ -18,4 +18,10 @@ export * from "./common/rangeSchema";
 export * from "./common/sustainabilityAttributesSchema";
 export * from "./common/thermalPropertiesSchema";
 export * from "./common/visualAndAestheticAttributesSchema";
+export * from "./common/aestheticAndCustomizationOptionsSchema";
+export * from "./common/economicFactorsSchema";
+export * from "./common/installationAndConnectivitySchema";
+export * from "./common/lifecycleAndMaintenanceSchema";
+export * from "./common/structuralPropertiesSchema";
+
 export * from "./entities/prefabElementSchema";
