@@ -4,13 +4,14 @@ import path from "node:path";
 import { stringify } from "yaml";
 import { createDocument } from "zod-openapi";
 import { createElementOperation, getElementOperation } from "./types/api/prefabElement";
+import npmPackage from "../package.json"
 
 const document = createDocument({
     openapi: "3.1.0",
     info: {
         title: "mod-dlm API",
         description: "mod-dlm is an open source project designed to create a domain-specific language (DSL) for describing prefab elements in the Architecture, Engineering, and Construction (AEC) industry. This project provides tools for defining entity models and automatically generating CRUD APIs, enabling suppliers to create and manage catalogs of their products easily.",
-        version: "1.0.0",
+        version: npmPackage.version,
         contact: {
             name: "Contact us",
             url: "https://mod.construction",
