@@ -1,0 +1,11 @@
+packageName: construction.mod.dlm
+groupId: construction.mod
+artifactId: dlm-server
+apiPackage: construction.mod.dlm.api
+modelPackage: construction.mod.dlm.model
+configPackage: construction.mod.dlm.configuration
+invokerPackage: construction.mod.dlm
+library: spring-boot
+beanValidations: true
+serviceImplementation: true
+dateLibrary: java8

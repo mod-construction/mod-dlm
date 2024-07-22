@@ -1,4 +1,4 @@
-import 'zod-openapi/extend';
+import "zod-openapi/extend";
 import * as fs from "node:fs";
 import path from "node:path";
 import { stringify } from "yaml";
