@@ -1,11 +1,11 @@
-name: Generate API Clients and Servers
+name: Generate API Servers
 
 on:
   push:
     branches:
       - main
   release:
-    types: [created]
+    types: [ created ]
 
 jobs:
   deploy:
@@ -14,13 +14,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Generate typescript client
+      - name: Generate Spring Server
         uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: spring
           openapi-url: https://mod-construction.github.io/mod-dlm/openapi.yaml
           config-file: generator-configs/spring-generator-config.yml
-      - name: Pushes to another repository
+      - name: Push to the server repository
         uses: cpina/github-action-push-to-another-repository@main
         env:
           SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY_SERVER }}
