@@ -37,8 +37,8 @@ Python >= {{{generatorLanguageVersion}}}
 To run the server, please execute the following from the root directory:
 
 ```bash
-pip3 install -r requirements.txt
-PYTHONPATH=src uvicorn openapi_server.main:app --host 0.0.0.0 --port {{serverPort}}
+pip install -r requirements.txt
+PYTHONPATH=src uvicorn mod_dlm_server.main:app --host 0.0.0.0 --port {{serverPort}}
 ```
 
 and open your browser at `http://localhost:{{serverPort}}/docs/` to see the docs.

@@ -6,6 +6,7 @@ files:
   CODE_OF_CONDUCT.md: {}
   CONTRIBUTING.md: {}
   mod-dlm-fastapi-server.png: {}
+  requirements.txt: {}
   README-fastapi.mustache:
     destinationFilename: README.md
     templateType: SupportingFiles
