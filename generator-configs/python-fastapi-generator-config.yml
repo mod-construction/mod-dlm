@@ -1,0 +1,11 @@
+packageName: mod_dlm_server
+templateDir: generator-configs/template
+files:
+  SECURITY.md: {}
+  LICENSE: {}
+  CODE_OF_CONDUCT.md: {}
+  CONTRIBUTING.md: {}
+  mod-dlm-fastapi-server.png: {}
+  README-fastapi.mustache:
+    destinationFilename: README.md
+    templateType: SupportingFiles

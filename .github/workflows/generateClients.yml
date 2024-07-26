@@ -1,0 +1,33 @@
+name: Generate API Clients
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [ created ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Generate Spring Server
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: typescript-fetch
+          openapi-url: https://mod-construction.github.io/mod-dlm/openapi.yaml
+          config-file: generator-configs/typescript-fetch-generator-config.yml
+      - name: Push to the server repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: '/github/workspace/spring-client'
+          destination-github-username: 'mod-construction'
+          destination-repository-name: 'mod-dlm-server-spring'
+          user-email: moradi.yashar@gmail.com
+          target-branch: main
+

@@ -1,1 +1,4 @@
-packageName: construction.mod.dlm
+packageName: "construction.mod.dlm"
+npmName: "@mod-construction/mod-dlm-client-fetch"
+npmRepository: "https://www.npmjs.com/package/@mod-construction/mod-dlm-client-fetch"
+withInterfaces: true

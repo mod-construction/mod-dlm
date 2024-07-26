@@ -5,7 +5,17 @@ apiPackage: construction.mod.dlm.api
 modelPackage: construction.mod.dlm.model
 configPackage: construction.mod.dlm.configuration
 invokerPackage: construction.mod.dlm
-library: spring-boot
+library: spring-cloud
 beanValidations: true
 serviceImplementation: true
 dateLibrary: java8
+templateDir: generator-configs/template
+files:
+  SECURITY.md: {}
+  LICENSE: {}
+  CODE_OF_CONDUCT.md: {}
+  CONTRIBUTING.md: {}
+  mod-dlm-spring-server.png: {}
+  README-spring.mustache:
+    destinationFilename: README.md
+    templateType: SupportingFiles

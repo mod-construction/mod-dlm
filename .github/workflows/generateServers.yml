@@ -20,13 +20,30 @@ jobs:
           generator: spring
           openapi-url: https://mod-construction.github.io/mod-dlm/openapi.yaml
           config-file: generator-configs/spring-generator-config.yml
-      - name: Push generated webpage to another repository
-        uses: nkoppel/push-files-to-another-repository@v1.1.3
+      - name: Push to the spring server repository
+        uses: cpina/github-action-push-to-another-repository@main
         env:
-          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY_SPRING }}
         with:
-          source-files: '/github/workspace/spring-client'
-          destination-username: 'mod-construction'
-          destination-repository: 'mod-dlm-server-spring'
-          commit-email: 'moradi.yashar@gmail.com'
+          source-directory: '/github/workspace/spring-client'
+          destination-github-username: 'mod-construction'
+          destination-repository-name: 'mod-dlm-server-spring'
+          user-email: moradi.yashar@gmail.com
+          target-branch: main
+      - name: Generate FastAPI Server
+        uses: openapi-generators/openapitools-generator-action@v1
+        with:
+          generator: spring
+          openapi-url: https://mod-construction.github.io/mod-dlm/openapi.yaml
+          config-file: generator-configs/python-fastapi-generator-config.yml
+      - name: Push to the spring server repository
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY_FAST }}
+        with:
+          source-directory: '/github/workspace/spring-client'
+          destination-github-username: 'mod-construction'
+          destination-repository-name: 'mod-dlm-server-fastapi'
+          user-email: moradi.yashar@gmail.com
+          target-branch: main
 
