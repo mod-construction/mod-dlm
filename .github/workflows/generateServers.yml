@@ -20,14 +20,13 @@ jobs:
           generator: spring
           openapi-url: https://mod-construction.github.io/mod-dlm/openapi.yaml
           config-file: generator-configs/spring-generator-config.yml
-      - name: Push to the server repository
-        uses: cpina/github-action-push-to-another-repository@main
+      - name: Push generated webpage to another repository
+        uses: nkoppel/push-files-to-another-repository@v1.1.3
         env:
-          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+          API_TOKEN_GITHUB: ${{ secrets.SSH_DEPLOY_KEY }}
         with:
-          source-directory: '/github/workspace/spring-client'
-          destination-github-username: 'mod-construction'
-          destination-repository-name: 'mod-dlm-server-spring'
-          user-email: moradi.yashar@gmail.com
-          target-branch: main
+          source-files: '/github/workspace/spring-client'
+          destination-username: 'mod-construction'
+          destination-repository: 'mod-dlm-server-spring'
+          commit-email: 'moradi.yashar@gmail.com'
 
