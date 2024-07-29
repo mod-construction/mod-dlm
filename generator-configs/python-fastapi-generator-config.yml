@@ -1,5 +1,6 @@
 packageName: mod_dlm_server
 templateDir: generator-configs/template
+appDescription: mod-dlm-server is an open-source REST server for storing and querying element data described using the mod-dlm domain-specific language (DSL).
 files:
   SECURITY.md: {}
   LICENSE: {}
