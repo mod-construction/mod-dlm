@@ -15,7 +15,9 @@ files:
   LICENSE: {}
   CODE_OF_CONDUCT.md: {}
   CONTRIBUTING.md: {}
-  mod-dlm-spring-server.png: {}
-  README-spring.mustache:
+  spring/mod-dlm-spring-server.png:
+    destinationFilename: mod-dlm-spring-server.png
+    templateType: SupportingFiles
+  spring/README-spring.mustache:
     destinationFilename: README.md
     templateType: SupportingFiles

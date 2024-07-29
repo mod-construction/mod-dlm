@@ -5,8 +5,15 @@ files:
   LICENSE: {}
   CODE_OF_CONDUCT.md: {}
   CONTRIBUTING.md: {}
-  mod-dlm-fastapi-server.png: {}
-  requirements.txt: {}
-  README-fastapi.mustache:
+  fastapi/mod-dlm-fastapi-server.png:
+    destinationFilename: mod-dlm-fastapi-server.png
+    templateType: SupportingFiles
+  fastapi/requirements.txt:
+    destinationFilename: requirements.txt
+    templateType: SupportingFiles
+  fastapi/README-fastapi.mustache:
     destinationFilename: README.md
+    templateType: SupportingFiles
+  fastapi/setup_cfg.mustache:
+    destinationFilename: setup.cfg
     templateType: SupportingFiles
