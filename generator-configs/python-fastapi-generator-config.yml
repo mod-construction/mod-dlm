@@ -17,3 +17,6 @@ files:
   fastapi/setup_cfg.mustache:
     destinationFilename: setup.cfg
     templateType: SupportingFiles
+  fastapi/publish-pypi.yml:
+    destinationFilename: .github/workflows/publish-pypi.yml
+    templateType: SupportingFiles

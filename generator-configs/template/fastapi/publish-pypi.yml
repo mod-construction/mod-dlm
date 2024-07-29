@@ -1,0 +1,36 @@
+name: Upload Python Package
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10' 
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build
+    - name: Build package
+      run: python -m build
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+    - name: Purge badge cache
+      run: curl -X PURGE https://camo.githubusercontent.com/0471d75067c55f44e4034664a071d67e0a76fcd6ab3cd5a5c332aaac10011213/68747470733a2f2f696d672e736869656c64732e696f2f707970692f762f6d6f642d646c6d2d736572766572
