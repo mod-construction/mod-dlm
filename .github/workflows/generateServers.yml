@@ -1,9 +1,6 @@
 name: Generate API Servers
 
 on:
-  push:
-    branches:
-      - main
   release:
     types: [ created ]
 
