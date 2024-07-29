@@ -10,6 +10,7 @@ Open source domain specific language to describe prefab construction elements.
 [![build status](https://github.com/mod-construction/mod-dlm/actions/workflows/apidoc.yml/badge.svg)](https://github.com/mod-construction/mod-dlm/actions/workflows/apidoc.yml)
 [![build status](https://github.com/mod-construction/mod-dlm/actions/workflows/publish.yml/badge.svg)](https://github.com/mod-construction/mod-dlm/actions/workflows/publish.yml)
 [![npm version](https://img.shields.io/npm/v/@mod-construction/mod-dlm/latest)](https://www.npmjs.com/package/@mod-construction/mod-dlm)
+[![PyPI version](https://img.shields.io/pypi/v/mod-dlm-server)](https://pypi.org/project/mod-dlm-server/)
 [![License](https://img.shields.io/github/license/mod-construction/mod-dlm)](https://opensource.org/licenses/MIT)
 
 
@@ -17,6 +18,8 @@ Open source domain specific language to describe prefab construction elements.
   <a href="https://mod-construction.github.io/mod-dlm/">API Documentation</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://www.npmjs.com/package/@mod-construction/mod-dlm">npm</a>
+  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
+  <a href="https://pypi.org/project/mod-dlm-server/">FastAPI Server</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
   <a href="https://github.com/mod-construction/mod-dlm/issues/new">Issues</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
