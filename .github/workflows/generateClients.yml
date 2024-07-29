@@ -1,9 +1,6 @@
 name: Generate API Clients
 
 on:
-  push:
-    branches:
-      - main
   release:
     types: [ created ]
 
