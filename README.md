@@ -39,6 +39,7 @@ You can always find the most up-to-date API documentation here: https://mod-cons
 - [Getting Started](#getting-started)
 - [Installation](#tinstallation)
 - [Usage](#usage)
+- [Hello Prefab Project](#hello-prefab-project)
 - [Features](#features)
 - [Contributing](#contributing)
 
@@ -52,9 +53,11 @@ You can always find the most up-to-date API documentation here: https://mod-cons
 
 ## Getting Started
 
+For a complete starter guide, see [Hello Prefab](#hello-prefab)
 ### Prerequisites
-- Node.js
-- Typescript (recommended)
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (version 16 or later)
+- npm (comes with Node.js)
 
 ### Installation
 
@@ -67,122 +70,189 @@ You can use **mod-dlm** in different scenarios.
 
 ### 1. Defining a New Element :
 ```typescript
-import { PrefabElementSchema, type PrefabElement } from '@mod-construction/mod-dlm';
+import { PrefabElement, PrefabElementSchema } from "@mod-construction/mod-dlm";
 
-const newElement: PrefabElement = {
-   id: 'element-001',
-   name: 'Eco-friendly Wall Panel',
-   description: 'An eco-friendly wall panel with superior insulation and sustainability features.',
-   boundingBox: {
-      width: 2500,
-      height: 3000,
-      depth: 150,
-   },
-   images: [
-      'https://example.com/images/wall-panel-front.jpg',
-      'https://example.com/images/wall-panel-side.jpg'
-   ],
-   buildingSystem: 'Wall',
-   productCategory: 'Solid Wall Panels',
-   material: {
-      finishMaterial: 'Timber',
-      structuralMaterial: 'Timber',
-   },
-   dimensional: {
-      width: {
-         min: 2400,
-         max: 2600,
-      },
-      height: {
-         min: 2900,
-         max: 3100,
-      },
-      length: {
-         min: 140,
-         max: 160,
-      },
-   },
-   performance: {
-      resistanceToFireClassification: 'B1',
-      thermalTransmittance: 0.30,
-      airborneSoundInsulation: 50,
-   },
-   sustainability: {
-      countryOfManufacturing: 'Sweden',
-      classification: 'A',
-   },
-   documentationAndCompliance: {
-      technicalSpecifications: 'https://example.com/docs/wall-panel-specs.pdf',
-      certifications: {
-         certificationTypes: ['FSC', 'PEFC'],
-         regulatoryApprovals: ['EN 14080', 'ISO 14001'],
-      },
-   },
+const examplePrefabElement: PrefabElement = {
+    id: '8be9e7b3-de6c-4621-8751-3a1b12d71f94',
+    name: 'Insulated Concrete Wall Panel',
+    description: 'A high-performance insulated concrete wall panel suitable for residential and commercial buildings.',
+    boundingBox: {
+        width: 3000, // in millimeters
+        height: 6000, // in millimeters
+        depth: 200 // in millimeters
+    },
+    images: [
+        'https://example.com/images/panel-front.jpg',
+        'https://example.com/images/panel-back.jpg'
+    ],
+    buildingSystem: 'Wall',
+    productCategory: 'Insulated Concrete Panels',
+    material: {
+        finishMaterial: 'Concrete',
+        structuralMaterial: 'Concrete'
+    },
+    dimensional: {
+        width: {
+            min: 1000,
+            max: 4000
+        },
+        height: {
+            min: 2000,
+            max: 8000
+        },
+        length: {
+            min: 100,
+            max: 300
+        }
+    },
+    structuralProperties: {
+        loadBearingCapacity: {
+            maximumLoad: 5000,
+            unit: 'kN',
+            loadDistribution: 'Uniform'
+        },
+        seismicResistance: 'Zone 3',
+        windLoadResistance: 'Class C'
+    },
+    performance: {
+        resistanceToFireClassification: 'A2',
+        thermalTransmittance: 0.25,
+        acousticProperties: {
+            soundInsulationRating: 'Rw 55 dB',
+            acousticPerformance: 'High'
+        }
+    },
+    sustainability: {
+        countryOfManufacturing: 'Germany',
+        classification: 'A',
+        VOCEmissions: 'Low',
+        recyclability: '75%',
+        energyEfficiency: 'LEED Gold'
+    },
+    documentationAndCompliance: {
+        technicalSpecifications: 'https://example.com/specifications/panel-001.pdf',
+        certifications: {
+            certificationTypes: ['ISO 9001', 'CE Marking'],
+            regulatoryApprovals: ['EN 14992', 'DIN 4102']
+        }
+    },
+    installationAndConnectivity: {
+        connectionType: 'Bolt-on',
+        installationTime: '2 hours per panel',
+        compatibility: 'Concrete Structure'
+    },
+    lifecycleAndMaintenance: {
+        expectedLifespan: '50 years',
+        maintenanceRequirements: 'Periodic inspection every 5 years',
+        warranty: '10-year manufacturer warranty'
+    },
+    aestheticAndCustomizationOptions: {
+        colorOptions: ['Gray', 'White', 'Beige'],
+        texture: 'Smooth',
+        modularAdaptability: 'Compatible with modular building systems'
+    },
+    economicFactors: {
+        costPerUnit: 1500, // in euros
+        manufacturingLeadTime: '4 weeks'
+    }
 };
 
+
 // You can use this object to interact with other parts of your application or library
-console.log('New element defined:', newElement);
+console.log('New element defined:', examplePrefabElement);
 ```
 
 ### 2. Validating an Element Using Zod and PrefabElementSchema:
 ```typescript
-import { z } from 'zod';
-import { PrefabElementSchema } from '@mod-construction/mod-dlm';
+import { PrefabElement, PrefabElementSchema } from "@mod-construction/mod-dlm";
 
-// Example element to validate
-const elementToValidate = {
-   id: 'element-002',
-   name: 'Insulated Roof Panel',
-   description: 'A roof panel with excellent thermal and acoustic insulation.',
-   boundingBox: {
-      width: 3200,
-      height: 4000,
-      depth: 180,
-   },
-   images: [
-      'https://example.com/images/roof-panel-front.jpg',
-      'https://example.com/images/roof-panel-side.jpg'
-   ],
-   buildingSystem: 'Roofs',
-   productCategory: 'Roof Panel',
-   material: {
-      finishMaterial: 'Steel',
-      structuralMaterial: 'Steel',
-   },
-   dimensional: {
-      width: {
-         min: 3100,
-         max: 3300,
-      },
-      height: {
-         min: 3900,
-         max: 4100,
-      },
-      length: {
-         min: 170,
-         max: 190,
-      },
-   },
-   performance: {
-      resistanceToFireClassification: 'A2',
-      thermalTransmittance: 0.20,
-      airborneSoundInsulation: 55,
-   },
-   sustainability: {
-      countryOfManufacturing: 'Germany',
-      classification: 'A+',
-   },
-   documentationAndCompliance: {
-      technicalSpecifications: 'https://example.com/docs/roof-panel-specs.pdf',
-      certifications: {
-         certificationTypes: ['ISO 9001', 'ISO 14001'],
-         regulatoryApprovals: ['EN 1090', 'DIN 18800'],
-      },
-   },
+const examplePrefabElement: PrefabElement = {
+    id: '8be9e7b3-de6c-4621-8751-3a1b12d71f94',
+    name: 'Insulated Concrete Wall Panel',
+    description: 'A high-performance insulated concrete wall panel suitable for residential and commercial buildings.',
+    boundingBox: {
+        width: 3000, // in millimeters
+        height: 6000, // in millimeters
+        depth: 200 // in millimeters
+    },
+    images: [
+        'https://example.com/images/panel-front.jpg',
+        'https://example.com/images/panel-back.jpg'
+    ],
+    buildingSystem: 'Wall',
+    productCategory: 'Insulated Concrete Panels',
+    material: {
+        finishMaterial: 'Concrete',
+        structuralMaterial: 'Concrete'
+    },
+    dimensional: {
+        width: {
+            min: 1000,
+            max: 4000
+        },
+        height: {
+            min: 2000,
+            max: 8000
+        },
+        length: {
+            min: 100,
+            max: 300
+        }
+    },
+    structuralProperties: {
+        loadBearingCapacity: {
+            maximumLoad: 5000,
+            unit: 'kN',
+            loadDistribution: 'Uniform'
+        },
+        seismicResistance: 'Zone 3',
+        windLoadResistance: 'Class C'
+    },
+    performance: {
+        resistanceToFireClassification: 'A2',
+        thermalTransmittance: 0.25,
+        acousticProperties: {
+            soundInsulationRating: 'Rw 55 dB',
+            acousticPerformance: 'High'
+        }
+    },
+    sustainability: {
+        countryOfManufacturing: 'Germany',
+        classification: 'A',
+        VOCEmissions: 'Low',
+        recyclability: '75%',
+        energyEfficiency: 'LEED Gold'
+    },
+    documentationAndCompliance: {
+        technicalSpecifications: 'https://example.com/specifications/panel-001.pdf',
+        certifications: {
+            certificationTypes: ['ISO 9001', 'CE Marking'],
+            regulatoryApprovals: ['EN 14992', 'DIN 4102']
+        }
+    },
+    installationAndConnectivity: {
+        connectionType: 'Bolt-on',
+        installationTime: '2 hours per panel',
+        compatibility: 'Concrete Structure'
+    },
+    lifecycleAndMaintenance: {
+        expectedLifespan: '50 years',
+        maintenanceRequirements: 'Periodic inspection every 5 years',
+        warranty: '10-year manufacturer warranty'
+    },
+    aestheticAndCustomizationOptions: {
+        colorOptions: ['Gray', 'White', 'Beige'],
+        texture: 'Smooth',
+        modularAdaptability: 'Compatible with modular building systems'
+    },
+    economicFactors: {
+        costPerUnit: 1500, // in euros
+        manufacturingLeadTime: '4 weeks'
+    }
 };
 
 // Validate the element using the PrefabElementSchema
-const validation = PrefabElementSchema.safeParse(elementToValidate);
+const validation = PrefabElementSchema.safeParse(examplePrefabElement);
 
 if (validation.success) {
    console.log('Element is valid:', validation.data);
@@ -190,6 +260,166 @@ if (validation.success) {
    console.error('Element validation failed:', validation.error);
 }
 ```
+## Hello Prefab Project
+This is a short guide to get you up and running in no time, even if you are not familiar with setting up a typescript project.
+
+## Prerequisites
+
+Make sure you have the following installed:
+- [Node.js](https://nodejs.org/) (version 16 or later)
+- npm (comes with Node.js)
+
+---
+
+## Steps
+
+### 1. Initialize a New Project
+
+1. Open your terminal and create a new directory for your project:
+   ```bash
+   mkdir mod-dlm-project
+   cd mod-dlm-project
+   ```
+2.	Initialize a new Node.js project:
+
+    ```bash
+      npm init -y
+    ```
+
+### 2. Install Dependencies
+
+1. Install TypeScript and the required types.
+    ```bash
+    npm install typescript @types/node --save-dev
+    ```
+2. Initialize a `TypeScript` configuration file.
+    ```bash
+    npx tsc --init
+    ```
+3. To auto-restart your project when you make changes, install `nodemon`.
+    ```bash
+   npm install nodemon --save-dev
+    ```
+4. Install `mod-dlm`.
+    ```bash
+   npm install @mod-construction/mod-dlm@latest -D
+    ```
+
+### 3. Configure your project
+Update the scripts section in your package.json:
+
+```json
+"scripts": {
+    "start": "tsc && node index.js",
+    "dev": "nodemon --watch src --ext ts --exec \"ts-node index.ts\""
+  },
+```
+
+### 4. Start coding
+
+1. Create an `index.ts` file in the root and paste the following code in it:
+    
+```typescript
+import { PrefabElement, PrefabElementSchema } from "@mod-construction/mod-dlm";
+
+const examplePrefabElement: PrefabElement = {
+    id: '8be9e7b3-de6c-4621-8751-3a1b12d71f94',
+    name: 'Insulated Concrete Wall Panel',
+    description: 'A high-performance insulated concrete wall panel suitable for residential and commercial buildings.',
+    boundingBox: {
+        width: 3000, // in millimeters
+        height: 6000, // in millimeters
+        depth: 200 // in millimeters
+    },
+    images: [
+        'https://example.com/images/panel-front.jpg',
+        'https://example.com/images/panel-back.jpg'
+    ],
+    buildingSystem: 'Wall',
+    productCategory: 'Insulated Concrete Panels',
+    material: {
+        finishMaterial: 'Concrete',
+        structuralMaterial: 'Concrete'
+    },
+    dimensional: {
+        width: {
+            min: 1000,
+            max: 4000
+        },
+        height: {
+            min: 2000,
+            max: 8000
+        },
+        length: {
+            min: 100,
+            max: 300
+        }
+    },
+    structuralProperties: {
+        loadBearingCapacity: {
+            maximumLoad: 5000,
+            unit: 'kN',
+            loadDistribution: 'Uniform'
+        },
+        seismicResistance: 'Zone 3',
+        windLoadResistance: 'Class C'
+    },
+    performance: {
+        resistanceToFireClassification: 'A2',
+        thermalTransmittance: 0.25,
+        acousticProperties: {
+            soundInsulationRating: 'Rw 55 dB',
+            acousticPerformance: 'High'
+        }
+    },
+    sustainability: {
+        countryOfManufacturing: 'Germany',
+        classification: 'A',
+        VOCEmissions: 'Low',
+        recyclability: '75%',
+        energyEfficiency: 'LEED Gold'
+    },
+    documentationAndCompliance: {
+        technicalSpecifications: 'https://example.com/specifications/panel-001.pdf',
+        certifications: {
+            certificationTypes: ['ISO 9001', 'CE Marking'],
+            regulatoryApprovals: ['EN 14992', 'DIN 4102']
+        }
+    },
+    installationAndConnectivity: {
+        connectionType: 'Bolt-on',
+        installationTime: '2 hours per panel',
+        compatibility: 'Concrete Structure'
+    },
+    lifecycleAndMaintenance: {
+        expectedLifespan: '50 years',
+        maintenanceRequirements: 'Periodic inspection every 5 years',
+        warranty: '10-year manufacturer warranty'
+    },
+    aestheticAndCustomizationOptions: {
+        colorOptions: ['Gray', 'White', 'Beige'],
+        texture: 'Smooth',
+        modularAdaptability: 'Compatible with modular building systems'
+    },
+    economicFactors: {
+        costPerUnit: 1500, // in euros
+        manufacturingLeadTime: '4 weeks'
+    }
+};
+
+
+// You can use this object to interact with other parts of your application or library
+console.log('New element defined:', examplePrefabElement);
+
+```
+
+### 5. Run your code
+To tun your code, simply run the following command in your terminal:
+
+```bash
+npm run dev
+```
+
 
 ## Contributing
 
