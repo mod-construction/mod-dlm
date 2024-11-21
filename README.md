@@ -36,6 +36,7 @@ Open source domain specific language to describe prefab construction elements.
 You can always find the most up-to-date API documentation here: https://mod-construction.github.io/mod-dlm/
 
 ## Table of Contents
+- [Data Model](#data-model)
 - [Getting Started](#getting-started)
 - [Installation](#tinstallation)
 - [Usage](#usage)
@@ -50,6 +51,133 @@ You can always find the most up-to-date API documentation here: https://mod-cons
 - **3D Visuaspanzation**: Support for visuaspanzing 3D bounding boxes of prefab elements.
 - **Comprehensive Metadata**: Include critical attributes such as material composition, dimensions, weight, thermal properties, and more.
 - **Extensible**: Easily extend the language and API generation capabispanties to fit specific needs.
+
+## Data Model
+
+```mermaid
+erDiagram
+    PrefabElement {
+        string id
+        string name
+        string description
+        BoundingBox boundingBox
+        string[] images
+        string buildingSystem
+        string productCategory
+        Material material
+        Dimensional dimensional
+        StructuralProperties structuralProperties
+        Performance performance
+        Sustainability sustainability
+        DocumentationAndCompliance documentationAndCompliance
+        InstallationAndConnectivity installationAndConnectivity
+        LifecycleAndMaintenance lifecycleAndMaintenance
+        AestheticAndCustomizationOptions aestheticAndCustomizationOptions
+        EconomicFactors economicFactors
+    }
+
+    BoundingBox {
+        number width
+        number height
+        number depth
+    }
+
+    Material {
+        string finishMaterial
+        string structuralMaterial
+    }
+
+    Dimensional {
+        Range width
+        Range height
+        Range length
+    }
+
+    Range {
+        number min
+        number max
+    }
+
+    StructuralProperties {
+        LoadBearingCapacity loadBearingCapacity
+        string seismicResistance
+        string windLoadResistance
+    }
+
+    LoadBearingCapacity {
+        number maximumLoad
+        string unit
+        string loadDistribution
+    }
+
+    Performance {
+        string resistanceToFireClassification
+        number thermalTransmittance
+        AcousticProperties acousticProperties
+    }
+
+    AcousticProperties {
+        string soundInsulationRating
+        string acousticPerformance
+    }
+
+    Sustainability {
+        string countryOfManufacturing
+        string classification
+        string VOCEmissions
+        string recyclability
+        string energyEfficiency
+    }
+
+    DocumentationAndCompliance {
+        string technicalSpecifications
+        Certifications certifications
+    }
+
+    Certifications {
+        string[] certificationTypes
+        string[] regulatoryApprovals
+    }
+
+    InstallationAndConnectivity {
+        string connectionType
+        string installationTime
+        string compatibility
+    }
+
+    LifecycleAndMaintenance {
+        string expectedLifespan
+        string maintenanceRequirements
+        string warranty
+    }
+
+    AestheticAndCustomizationOptions {
+        string[] colorOptions
+        string texture
+        string modularAdaptability
+    }
+
+    EconomicFactors {
+        number costPerUnit
+        string manufacturingLeadTime
+    }
+
+    PrefabElement ||--o{ BoundingBox : has
+    PrefabElement ||--o{ Material : has
+    PrefabElement ||--o{ Dimensional : has
+    PrefabElement ||--o{ StructuralProperties : has
+    StructuralProperties ||--o{ LoadBearingCapacity : contains
+    PrefabElement ||--o{ Performance : has
+    Performance ||--o{ AcousticProperties : contains
+    PrefabElement ||--o{ Sustainability : has
+    PrefabElement ||--o{ DocumentationAndCompliance : has
+    DocumentationAndCompliance ||--o{ Certifications : contains
+    PrefabElement ||--o{ InstallationAndConnectivity : has
+    PrefabElement ||--o{ LifecycleAndMaintenance : has
+    PrefabElement ||--o{ AestheticAndCustomizationOptions : has
+    PrefabElement ||--o{ EconomicFactors : has
+    Dimensional ||--o{ Range : contains
+```
 
 ## Getting Started
 
