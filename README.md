@@ -53,7 +53,7 @@ You can always find the most up-to-date API documentation here: https://mod-cons
 
 ## Getting Started
 
-For a complete starter guide, see [Hello Prefab](#hello-prefab)
+For a complete starter guide, see [Hello Prefab Project](#hello-prefab-project)
 ### Prerequisites
 Make sure you have the following installed:
 - [Node.js](https://nodejs.org/) (version 16 or later)
