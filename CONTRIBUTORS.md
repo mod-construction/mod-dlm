@@ -5,7 +5,7 @@ You guys rock! 🚀💪🏼🤘
 
 ## Code Contributors
 - [Yashar Moradi](https://github.com/maveric1977)
-- [Jianpeng Cao - Kemp](https://github.com/kempcao)
+- [Jianpeng Cao (Kemp)](https://github.com/kempcao)
 - [Milovann Yanatchkov](https://github.com/rvba)
 - [Alex-Schlachter](https://github.com/Alex-Schlachter27)
 - [Atacan Kural Avgoren](https://github.com/atacankural)
