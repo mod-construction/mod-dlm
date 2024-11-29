@@ -556,6 +556,11 @@ We appreciate feedback and contribution to this project! Before you get started,
 * [Contribution guidelines](CONTRIBUTING.md)
 * [Code of conduct](CODE_OF_CONDUCT.md)
 
+
+### 🙌 Thanks to Our Contributors
+A huge thank you to all the amazing contributors who have helped make this project better. You can find the full list of contributors [here](CONTRIBUTORS.md).
+
+
 ## License
 
 [MIT](LICENSE)
