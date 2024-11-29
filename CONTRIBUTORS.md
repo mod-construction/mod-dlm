@@ -21,6 +21,8 @@ You guys rock! 🚀💪🏼🤘
 - [Samin Eghbali](https://github.com/Samsmoon13)
 - [Parisa Shafiee](https://github.com/parisashafiee)
 - [Yasmin Ragab](https://github.com/YasminRagab)
+- [Kwi-Hae Kim](https://github.com/kwihae)
+- [Olga Poletkina](https://github.com/olgapoletkina)
 
 ## Non-Code Contributors
 - [Marc Beermann](https://github.com/beerdude1976)
