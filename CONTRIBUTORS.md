@@ -9,7 +9,7 @@ You guys rock! 🚀💪🏼🤘
 - [Milovann Yanatchkov](https://github.com/rvba)
 - [Alex-Schlachter](https://github.com/Alex-Schlachter27)
 - [Atacan Kural Avgoren](https://github.com/atacankural)
-- [Emir Demirbilek](demirbilek@tufast.de)
+- [Emir Demirbilek](https://github.com/retrorecon)
 - [OlegMoshkovich](https://github.com/OlegMoshkovich)
 - [Pedram Gilaniniya](https://github.com/pedram114)
 - [Tao Sun](https://github.com/LupoSun)
@@ -24,6 +24,9 @@ You guys rock! 🚀💪🏼🤘
 - [Kwi-Hae Kim](https://github.com/kwihae)
 - [Olga Poletkina](https://github.com/olgapoletkina)
 - [Selin Yeltekin](https://github.com/selinyeltekin)
+- [Yuxin Qiu](https://github.com/yuxinqiu9)
+- [Kaamil Ahmed Kaleem](https://github.com/Kaamil008)
+- [Miguel Angel Montoya Gonzalez](https://github.com/Angel-Montoya)
 
 ## Non-Code Contributors
 - [Marc Beermann](https://github.com/beerdude1976)
