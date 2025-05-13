@@ -11,6 +11,7 @@ export * from "./common/lifecycleAndMaintenanceSchema";
 export * from "./common/loadBearingCapacitySchema";
 export * from "./common/materialSchema";
 export * from "./common/performanceAttributesSchema";
+export * from "./common/productCategorySchema";
 export * from "./common/productMaterialAttributesSchema";
 export * from "./common/rangeSchema";
 export * from "./common/structuralPropertiesSchema";
