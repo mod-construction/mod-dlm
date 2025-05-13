@@ -117,43 +117,8 @@ components:
           type: array
           items:
             type: string
-        buildingSystem:
-          type: string
-          enum:
-            - Wall
-            - Balcony
-            - Pod
-            - Frame
-            - Facade
-            - Floors
-            - Modules
-            - Plants
-            - Roofs
-            - Stairs
         productCategory:
-          type: string
-          enum:
-            - Boarding
-            - Solid Wall Panels
-            - Closed Wall Panels
-            - Twinwall
-            - Open Wall Panels
-            - Structural Insulated Panels (SIPs)
-            - Insulated Concrete Panels
-            - Prefabricated Balcony
-            - Pod
-            - Whole Building System
-            - Structural Frame
-            - Facade System
-            - Hollowcore Floor
-            - Concrete Lattice Floor
-            - Floor Cassettes
-            - Solid Floor Panels
-            - Volumetric module
-            - Prefabricated Plant
-            - Roof Panel
-            - Roof Truss
-            - Prefabricated Stairs
+          $ref: "#/components/schemas/ProductCategory"
         material:
           type: object
           properties:
@@ -402,11 +367,57 @@ components:
         - description
         - boundingBox
         - images
-        - buildingSystem
         - productCategory
         - material
         - dimensional
       description: Prefab Element
+    ProductCategory:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+            - Boarding
+            - Solid Wall Panels
+            - Closed Wall Panels
+            - Twinwall
+            - Open Wall Panels
+            - Structural Insulated Panels (SIPs)
+            - Insulated Concrete Panels
+            - Prefabricated Balcony
+            - Pod
+            - Whole Building System
+            - Structural Frame
+            - Facade System
+            - Hollowcore Floor
+            - Concrete Lattice Floor
+            - Floor Cassettes
+            - Solid Floor Panels
+            - Volumetric module
+            - Prefabricated Plant
+            - Roof Panel
+            - Roof Truss
+            - Prefabricated Stairs
+        buildingSystem:
+          type: string
+          enum:
+            - Wall
+            - Balcony
+            - Pod
+            - Frame
+            - Facade
+            - Floors
+            - Modules
+            - Plants
+            - Roofs
+            - Stairs
+      required:
+        - category
+        - buildingSystem
+      description: Product Category
+      example:
+        category: Solid Wall Panels
+        buildingSystem: Wall
     ElementCreate:
       type: object
       properties:
@@ -432,43 +443,8 @@ components:
           type: array
           items:
             type: string
-        buildingSystem:
-          type: string
-          enum:
-            - Wall
-            - Balcony
-            - Pod
-            - Frame
-            - Facade
-            - Floors
-            - Modules
-            - Plants
-            - Roofs
-            - Stairs
         productCategory:
-          type: string
-          enum:
-            - Boarding
-            - Solid Wall Panels
-            - Closed Wall Panels
-            - Twinwall
-            - Open Wall Panels
-            - Structural Insulated Panels (SIPs)
-            - Insulated Concrete Panels
-            - Prefabricated Balcony
-            - Pod
-            - Whole Building System
-            - Structural Frame
-            - Facade System
-            - Hollowcore Floor
-            - Concrete Lattice Floor
-            - Floor Cassettes
-            - Solid Floor Panels
-            - Volumetric module
-            - Prefabricated Plant
-            - Roof Panel
-            - Roof Truss
-            - Prefabricated Stairs
+          $ref: "#/components/schemas/ProductCategory"
         material:
           type: object
           properties:
@@ -716,7 +692,6 @@ components:
         - description
         - boundingBox
         - images
-        - buildingSystem
         - productCategory
         - material
         - dimensional
