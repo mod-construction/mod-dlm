@@ -4,13 +4,13 @@ import { BoundingBoxSchema } from "../common/boundingBoxSchema";
 import { DimensionalAttributesSchema } from "../common/dimensionalAttributesSchema";
 import { DocumentationAndComplianceSchema } from "../common/documentationAndComplianceSchema";
 import { EconomicFactorsSchema } from "../common/economicFactorsSchema";
-import { BuildingSystemEnum, ProductCategoryEnum } from "../common/enums";
 import { InstallationAndConnectivitySchema } from "../common/installationAndConnectivitySchema";
 import { LifecycleAndMaintenanceSchema } from "../common/lifecycleAndMaintenanceSchema";
 import { PerformanceAttributesSchema } from "../common/performanceAttributesSchema";
 import { ProductMaterialAttributesSchema } from "../common/productMaterialAttributesSchema";
 import { StructuralPropertiesSchema } from "../common/structuralPropertiesSchema";
 import { SustainabilityAttributesSchema } from "../common/sustainabilityAttributesSchema";
+import { ProductCategorySchema } from "../common/productCategorySchema";
 
 const ElementIdSchema = z.string().uuid().openapi({
     description: "A unique identifier for an element",
@@ -28,8 +28,7 @@ const PrefabElementSchema = z.object({
     description: z.string(),
     boundingBox: BoundingBoxSchema,
     images: z.array(z.string()),
-    buildingSystem: BuildingSystemEnum,
-    productCategory: ProductCategoryEnum,
+    productCategory: ProductCategorySchema,
     material: ProductMaterialAttributesSchema,
     dimensional: DimensionalAttributesSchema,
     structuralProperties: StructuralPropertiesSchema.optional(),
