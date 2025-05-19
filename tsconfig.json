@@ -26,5 +26,6 @@
  
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
-  }
+  },
+  "exclude": ["dist", "openapi", "types", "node_modules"]
 }
