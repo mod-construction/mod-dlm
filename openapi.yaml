@@ -97,17 +97,22 @@ components:
           $ref: "#/components/schemas/ElementId"
         name:
           type: string
+          minLength: 1
         description:
           type: string
+          minLength: 1
         boundingBox:
           type: object
           properties:
             width:
               type: number
+              exclusiveMinimum: 0
             height:
               type: number
+              exclusiveMinimum: 0
             depth:
               type: number
+              exclusiveMinimum: 0
           required:
             - width
             - height
@@ -117,6 +122,7 @@ components:
           type: array
           items:
             type: string
+          minItems: 1
         productCategory:
           $ref: "#/components/schemas/ProductCategory"
         material:
@@ -423,17 +429,22 @@ components:
       properties:
         name:
           type: string
+          minLength: 1
         description:
           type: string
+          minLength: 1
         boundingBox:
           type: object
           properties:
             width:
               type: number
+              exclusiveMinimum: 0
             height:
               type: number
+              exclusiveMinimum: 0
             depth:
               type: number
+              exclusiveMinimum: 0
           required:
             - width
             - height
@@ -443,6 +454,7 @@ components:
           type: array
           items:
             type: string
+          minItems: 1
         productCategory:
           $ref: "#/components/schemas/ProductCategory"
         material:
