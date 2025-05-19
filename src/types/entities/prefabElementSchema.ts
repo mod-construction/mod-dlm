@@ -24,10 +24,10 @@ const ElementIdSchema = z.string().uuid().openapi({
 
 const PrefabElementSchema = z.object({
     id: ElementIdSchema,
-    name: z.string(),
-    description: z.string(),
+    name: z.string().min(1, "Name is required"),
+    description: z.string().min(1, "Description is required"),
     boundingBox: BoundingBoxSchema,
-    images: z.array(z.string()),
+    images: z.array(z.string()).min(1, "At least one image is required"),
     productCategory: ProductCategorySchema,
     material: ProductMaterialAttributesSchema,
     dimensional: DimensionalAttributesSchema,
