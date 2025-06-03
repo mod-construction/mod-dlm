@@ -10,83 +10,90 @@ const DisassemblyRatingEnum = z.enum(["1", "2", "3", "4", "5"]).openapi({
     "5 = tool-free or designed-for-disassembly.",
   example: "3",
 });
-const ReusePotentialEnum = z.enum(["single-use", "multi-use", "recyclable", "remanufacturable"]).openapi({
-  description:
-    "Potential for reuse of the product: 'single-use' means one-time use, " +
-    "'multi-use' indicates multiple uses, 'recyclable' means material can be recycled, " +
-    "and 'remanufacturable' means product can be refurbished and remanufactured.",
-  example: "recyclable",
-});
-const RefurbishmentScopeEnum = z.enum(["none", "surface-only", "partial", "full"]).openapi({
-  description:
-    "Scope of refurbishment possible: 'none' means no refurbishment, 'surface-only' indicates minor surface work, " +
-    "'partial' means moderate refurbishment, and 'full' means complete refurbishment.",
-  example: "partial",
-});
-const CircularityCertificationEnum = z.enum([
-  "none",
-  "C2C_basic",
-  "C2C_bronze",
-  "C2C_silver",
-  "C2C_gold",
-  "C2C_platinum",
-]).openapi({
-  description:
-    "Certification levels for circularity according to Cradle to Cradle (C2C) standards, ranging from 'none' to 'C2C_platinum'.",
-  example: "C2C_gold",
-});
+const ReusePotentialEnum = z
+  .enum(["single-use", "multi-use", "recyclable", "remanufacturable"])
+  .openapi({
+    description:
+      "Potential for reuse of the product: 'single-use' means one-time use, " +
+      "'multi-use' indicates multiple uses, 'recyclable' means material can be recycled, " +
+      "and 'remanufacturable' means product can be refurbished and remanufactured.",
+    example: "recyclable",
+  });
+const RefurbishmentScopeEnum = z
+  .enum(["none", "surface-only", "partial", "full"])
+  .openapi({
+    description:
+      "Scope of refurbishment possible: 'none' means no refurbishment, 'surface-only' indicates minor surface work, " +
+      "'partial' means moderate refurbishment, and 'full' means complete refurbishment.",
+    example: "partial",
+  });
+const CircularityCertificationEnum = z
+  .enum([
+    "none",
+    "C2C_basic",
+    "C2C_bronze",
+    "C2C_silver",
+    "C2C_gold",
+    "C2C_platinum",
+  ])
+  .openapi({
+    description:
+      "Certification levels for circularity according to Cradle to Cradle (C2C) standards, ranging from 'none' to 'C2C_platinum'.",
+    example: "C2C_gold",
+  });
 
-const ProductMaterialEnum = z.enum([
-  "Timber",
-  "Steel",
-  "Concrete",
-  "Hybrid",
-  "Other",
-]).openapi({
-  description: "Primary material of the product element.",
-  example: "Steel",
-});
-const BuildingSystemEnum = z.enum([
-  "Wall",
-  "Balcony",
-  "Pod",
-  "Frame",
-  "Facade",
-  "Floors",
-  "Modules",
-  "Plants",
-  "Roofs",
-  "Stairs",
-]).openapi({
-  description: "Building system category to which the product element belongs.",
-  example: "Facade",
-});
-const ProductCategoryEnum = z.enum([
-  "Boarding",
-  "Solid Wall Panels",
-  "Closed Wall Panels",
-  "Twinwall",
-  "Open Wall Panels",
-  "Structural Insulated Panels (SIPs)",
-  "Insulated Concrete Panels",
-  "Prefabricated Balcony",
-  "Pod",
-  "Whole Building System",
-  "Structural Frame",
-  "Facade System",
-  "Hollowcore Floor",
-  "Concrete Lattice Floor",
-  "Floor Cassettes",
-  "Solid Floor Panels",
-  "Volumetric module",
-  "Prefabricated Plant",
-  "Roof Panel",
-  "Roof Truss",
-  "Prefabricated Stairs",
-]).openapi({
-  description: "Specific product category within building systems.",
-  example: "Structural Insulated Panels (SIPs)",
-});
+const ProductMaterialEnum = z
+  .enum(["Timber", "Steel", "Concrete", "Hybrid", "Other"])
+  .openapi({
+    description: "Primary material of the product element.",
+    example: "Steel",
+  });
+const BuildingSystemEnum = z
+  .enum([
+    "Wall",
+    "Balcony",
+    "Pod",
+    "Frame",
+    "Facade",
+    "Floors",
+    "Modules",
+    "Plants",
+    "Roofs",
+    "Stairs",
+  ])
+  .openapi({
+    description:
+      "Building system category to which the product element belongs.",
+    example: "Facade",
+  });
+const ProductCategoryEnum = z
+  .enum([
+    "Boarding",
+    "Solid Wall Panels",
+    "Closed Wall Panels",
+    "Twinwall",
+    "Open Wall Panels",
+    "Structural Insulated Panels (SIPs)",
+    "Insulated Concrete Panels",
+    "Prefabricated Balcony",
+    "Pod",
+    "Whole Building System",
+    "Structural Frame",
+    "Facade System",
+    "Hollowcore Floor",
+    "Concrete Lattice Floor",
+    "Floor Cassettes",
+    "Solid Floor Panels",
+    "Volumetric module",
+    "Prefabricated Plant",
+    "Roof Panel",
+    "Roof Truss",
+    "Prefabricated Stairs",
+  ])
+  .openapi({
+    description: "Specific product category within building systems.",
+    example: "Structural Insulated Panels (SIPs)",
+  });
 
 const SeismicResistance = z
   .enum([
@@ -195,7 +202,8 @@ const ConnectionType = z
 const LoadBearingTestStandardEnum = z
   .enum(["EN 1991-1-1", "ASTM E72", "ISO 4355"])
   .openapi({
-    description: "Structural load testing standard used to determine maximum load.",
+    description:
+      "Structural load testing standard used to determine maximum load.",
     example: "ASTM E72",
   });
 
@@ -236,41 +244,70 @@ const LoadDistributionEnum = z
  * Enumeration of IFC Building Element types based on IFC 4.3.
  * Reference: ISO 16739-1:2024
  */
-const IfcBuildingElementEnum = z.enum([
-  "IfcBeam",
-  "IfcChimney",
-  "IfcColumn",
-  "IfcCovering",
-  "IfcCurtainWall",
-  "IfcDoor",
-  "IfcFooting",
-  "IfcMember",
-  "IfcPile",
-  "IfcPlate",
-  "IfcRailing",
-  "IfcRamp",
-  "IfcRampFlight",
-  "IfcRoof",
-  "IfcShadingDevice",
-  "IfcSlab",
-  "IfcStair",
-  "IfcStairFlight",
-  "IfcWall",
-  "IfcWallStandardCase",
-  "IfcWindow",
-  "IfcBuildingElementProxy",
-]).openapi({
-  description: "Enumeration of IFC Building Element types based on IFC 4.3.",
-  example: "IfcWall",
-});
+const IfcBuildingElementEnum = z
+  .enum([
+    "IfcBeam",
+    "IfcChimney",
+    "IfcColumn",
+    "IfcCovering",
+    "IfcCurtainWall",
+    "IfcDoor",
+    "IfcFooting",
+    "IfcMember",
+    "IfcPile",
+    "IfcPlate",
+    "IfcRailing",
+    "IfcRamp",
+    "IfcRampFlight",
+    "IfcRoof",
+    "IfcShadingDevice",
+    "IfcSlab",
+    "IfcStair",
+    "IfcStairFlight",
+    "IfcWall",
+    "IfcWallStandardCase",
+    "IfcWindow",
+    "IfcBuildingElementProxy",
+  ])
+  .openapi({
+    description: "Enumeration of IFC Building Element types based on IFC 4.3.",
+    example: "IfcWall",
+  });
 
-const CurrencyEnum = z.enum(["EUR", "USD", "GBP", "CHF", "JPY", "CNY"]).openapi({
-  description: "Currency of the cost estimate, using ISO 4217 codes.",
-  example: "EUR",
-});
+const CurrencyEnum = z
+  .enum(["EUR", "USD", "GBP", "CHF", "JPY", "CNY"])
+  .openapi({
+    description: "Currency of the cost estimate, using ISO 4217 codes.",
+    example: "EUR",
+  });
+
+/**
+ * Classification of the material's reaction to fire, based on Euroclass standards (EN 13501-1).
+ * Ranges from A1 (non-combustible) to F (easily flammable).
+ */
+const FireResistanceEnum = z
+  .enum(["A1", "A2", "B", "C", "D", "E", "F"])
+  .openapi({
+    description:
+      "Fire resistance classification based on Euroclass standards (EN 13501-1).",
+    example: "A1",
+  });
+
+/**
+ * Duration for which the element resists fire under standard testing conditions.
+ * Expressed in minutes, as defined by EN 1363-1 or ASTM E119.
+ */
+const FireResistanceDurationEnum = z
+  .enum(["30min", "60min", "90min", "120min", "180min", "240min"])
+  .openapi({
+    description: "Fire resistance duration in minutes (EN 1363-1 / ASTM E119).",
+    example: "30min",
+  });
 
 export {
   CurrencyEnum,
+  FireResistanceEnum,
+  FireResistanceDurationEnum,
   ProductMaterialEnum,
   BuildingSystemEnum,
   ProductCategoryEnum,
