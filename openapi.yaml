@@ -454,116 +454,10 @@ components:
           description: Optional performance metrics related to strength, insulation, or
             soundproofing.
         sustainability:
-          type: object
-          properties:
-            countryOfManufacturing:
-              type: string
-              description: Country where the element is manufactured
-            classification:
-              type: string
-              enum:
-                - A+
-                - A
-                - B
-                - C
-                - D
-              description: Simplified sustainability score, where A+ indicates highest
-                performance. Define based on EPD or lifecycle impact benchmarks.
-              example: A
-            VOCEmissions:
-              type: string
-              enum:
-                - None (<0.01 mg/m³)
-                - Very Low (<0.1 mg/m³)
-                - Low (<0.3 mg/m³)
-                - Moderate (0.3–1.0 mg/m³)
-                - High (>1.0 mg/m³)
-              description: Volatile Organic Compounds emissions level (None, Low, Medium,
-                High)
-              example: Low (<0.3 mg/m³)
-            recyclability:
-              type: number
-              minimum: 0
-              maximum: 100
-              description: Percentage of the element that is recyclable, from 0 to 100%
-            energyEfficiency:
-              type: string
-              enum:
-                - R-1
-                - R-2
-                - R-5
-                - Energy Star
-                - LEED Certified
-                - LEED Silver
-                - LEED Gold
-                - LEED Platinum
-                - BREEAM Good
-                - BREEAM Very Good
-                - BREEAM Excellent
-                - BREEAM Outstanding
-                - Passive House
-                - DGNB Gold
-              description: Energy performance classification, combining insulation tiers and
-                certifications (LEED, BREEAM, etc.).
-              example: LEED Gold
-          required:
-            - countryOfManufacturing
-            - classification
-            - energyEfficiency
-          description: Environmental and sustainability performance such as EPDs or
-            recyclability.
-        reuseAndCircularity:
-          type: object
-          properties:
-            disassemblyRating:
-              type: string
-              enum:
-                - "1"
-                - "2"
-                - "3"
-                - "4"
-                - "5"
-              description: Ease of disassembly rated from 1 (not possible) to 5 (tool-free),
-                based on ISO 20887:2020.
-              example: "3"
-            reusePotential:
-              type: string
-              enum:
-                - single-use
-                - multi-use
-                - recyclable
-                - remanufacturable
-              description: End-of-life potential of the element, such as single-use,
-                recyclable, or remanufacturable.
-              example: recyclable
-            refurbishmentScope:
-              type: string
-              enum:
-                - none
-                - surface-only
-                - partial
-                - full
-              description: "Extent of refurbishment: none, surface-only, partial, or full
-                reuse of functional components."
-              example: partial
-            circularityCertification:
-              type: string
-              enum:
-                - none
-                - C2C_basic
-                - C2C_bronze
-                - C2C_silver
-                - C2C_gold
-                - C2C_platinum
-              description: Circularity certification level (e.g., C2C_gold, C2C_platinum).
-              example: C2C_gold
-          required:
-            - disassemblyRating
-            - reusePotential
-            - refurbishmentScope
-            - circularityCertification
-          description: Optional data describing how reusable or refurbishable the product
-            is.
+          allOf:
+            - $ref: "#/components/schemas/Sustainability"
+            - description: Environmental and sustainability performance such as EPDs or
+                recyclability.
         documentationAndCompliance:
           type: object
           properties:
@@ -689,6 +583,122 @@ components:
         - material
         - dimensional
       description: Prefab Element
+    Sustainability:
+      type: object
+      properties:
+        environmentalImpact:
+          type: object
+          properties:
+            classification:
+              type: string
+              enum:
+                - A+
+                - A
+                - B
+                - C
+                - D
+              description: Overall sustainability score based on environmental impact (e.g.,
+                A+, A, B).
+              example: A+
+            VOCEmissions:
+              type: string
+              enum:
+                - None (<0.01 mg/m³)
+                - Very Low (<0.1 mg/m³)
+                - Low (0.1–0.3 mg/m³)
+                - Moderate (0.3–1.0 mg/m³)
+                - High (>1.0 mg/m³)
+              description: "VOC emissions category: None, Low, Medium, or High."
+              example: Low (0.1–0.3 mg/m³)
+            recyclability:
+              type: number
+              minimum: 0
+              maximum: 100
+              description: Recyclability rate of the product from 0 to 100%.
+              example: 85
+            energyEfficiency:
+              type: string
+              enum:
+                - R-1
+                - R-2
+                - R-5
+                - Energy Star
+                - LEED Certified
+                - LEED Silver
+                - LEED Gold
+                - LEED Platinum
+                - BREEAM Good
+                - BREEAM Very Good
+                - BREEAM Excellent
+                - BREEAM Outstanding
+                - Passive House
+                - DGNB Gold
+              description: Energy certification level or standard.
+              example: LEED Certified
+          required:
+            - classification
+            - energyEfficiency
+        circularity:
+          type: object
+          properties:
+            disassemblyRating:
+              type: string
+              enum:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+              description: Rating from 1 (not disassemblable) to 5 (tool-free disassembly).
+              example: "3"
+            reusePotential:
+              type: string
+              enum:
+                - single-use
+                - multi-use
+                - recyclable
+                - remanufacturable
+              description: Primary reuse potential of the element after its service life.
+              example: recyclable
+            refurbishmentScope:
+              type: string
+              enum:
+                - none
+                - surface-only
+                - partial
+                - full
+              description: "Refurbishment level: none, surface-only, partial, or full."
+              example: partial
+            circularityCertification:
+              type: string
+              enum:
+                - none
+                - C2C_basic
+                - C2C_bronze
+                - C2C_silver
+                - C2C_gold
+                - C2C_platinum
+              description: Level of circularity certification (e.g., C2C_gold).
+              example: C2C_gold
+          required:
+            - disassemblyRating
+            - reusePotential
+            - refurbishmentScope
+            - circularityCertification
+        origin:
+          type: object
+          properties:
+            countryOfManufacturing:
+              type: string
+              description: Country of production for lifecycle and logistics assessment.
+              example: Germany
+          required:
+            - countryOfManufacturing
+      required:
+        - environmentalImpact
+        - circularity
+        - origin
+      description: Sustainability attributes of the element.
     InstallationAndConnectivity:
       type: object
       properties:
@@ -1089,116 +1099,10 @@ components:
           description: Optional performance metrics related to strength, insulation, or
             soundproofing.
         sustainability:
-          type: object
-          properties:
-            countryOfManufacturing:
-              type: string
-              description: Country where the element is manufactured
-            classification:
-              type: string
-              enum:
-                - A+
-                - A
-                - B
-                - C
-                - D
-              description: Simplified sustainability score, where A+ indicates highest
-                performance. Define based on EPD or lifecycle impact benchmarks.
-              example: A
-            VOCEmissions:
-              type: string
-              enum:
-                - None (<0.01 mg/m³)
-                - Very Low (<0.1 mg/m³)
-                - Low (<0.3 mg/m³)
-                - Moderate (0.3–1.0 mg/m³)
-                - High (>1.0 mg/m³)
-              description: Volatile Organic Compounds emissions level (None, Low, Medium,
-                High)
-              example: Low (<0.3 mg/m³)
-            recyclability:
-              type: number
-              minimum: 0
-              maximum: 100
-              description: Percentage of the element that is recyclable, from 0 to 100%
-            energyEfficiency:
-              type: string
-              enum:
-                - R-1
-                - R-2
-                - R-5
-                - Energy Star
-                - LEED Certified
-                - LEED Silver
-                - LEED Gold
-                - LEED Platinum
-                - BREEAM Good
-                - BREEAM Very Good
-                - BREEAM Excellent
-                - BREEAM Outstanding
-                - Passive House
-                - DGNB Gold
-              description: Energy performance classification, combining insulation tiers and
-                certifications (LEED, BREEAM, etc.).
-              example: LEED Gold
-          required:
-            - countryOfManufacturing
-            - classification
-            - energyEfficiency
-          description: Environmental and sustainability performance such as EPDs or
-            recyclability.
-        reuseAndCircularity:
-          type: object
-          properties:
-            disassemblyRating:
-              type: string
-              enum:
-                - "1"
-                - "2"
-                - "3"
-                - "4"
-                - "5"
-              description: Ease of disassembly rated from 1 (not possible) to 5 (tool-free),
-                based on ISO 20887:2020.
-              example: "3"
-            reusePotential:
-              type: string
-              enum:
-                - single-use
-                - multi-use
-                - recyclable
-                - remanufacturable
-              description: End-of-life potential of the element, such as single-use,
-                recyclable, or remanufacturable.
-              example: recyclable
-            refurbishmentScope:
-              type: string
-              enum:
-                - none
-                - surface-only
-                - partial
-                - full
-              description: "Extent of refurbishment: none, surface-only, partial, or full
-                reuse of functional components."
-              example: partial
-            circularityCertification:
-              type: string
-              enum:
-                - none
-                - C2C_basic
-                - C2C_bronze
-                - C2C_silver
-                - C2C_gold
-                - C2C_platinum
-              description: Circularity certification level (e.g., C2C_gold, C2C_platinum).
-              example: C2C_gold
-          required:
-            - disassemblyRating
-            - reusePotential
-            - refurbishmentScope
-            - circularityCertification
-          description: Optional data describing how reusable or refurbishable the product
-            is.
+          allOf:
+            - $ref: "#/components/schemas/Sustainability"
+            - description: Environmental and sustainability performance such as EPDs or
+                recyclability.
         documentationAndCompliance:
           type: object
           properties:
