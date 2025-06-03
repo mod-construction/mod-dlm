@@ -5,7 +5,7 @@ info:
     prefab construction elements. This project provides tools for defining
     entity models and automatically generating CRUD APIs, enabling suppliers to
     create and manage catalogs of their products easily.
-  version: 1.0.11
+  version: 1.0.12
   contact:
     name: Contact us
     url: https://mod.construction
