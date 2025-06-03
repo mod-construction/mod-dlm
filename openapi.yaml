@@ -94,13 +94,45 @@ components:
       type: object
       properties:
         id:
-          $ref: "#/components/schemas/ElementId"
+          type: string
+          format: uuid
+          description: A unique identifier for the prefab element (UUID).
+          example: 4dd643ff-7ec7-4666-9c88-50b7d3da34e4
+        versionMetadata:
+          type: object
+          properties:
+            version:
+              type: string
+              pattern: ^\d+\.\d+\.\d+$
+              description: Semantic version of the prefab element, e.g., '1.0.0'
+            status:
+              type: string
+              enum:
+                - draft
+                - published
+                - deprecated
+              description: Publishing status of the element
+            lastUpdated:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp of the last update
+          required:
+            - version
+            - status
+            - lastUpdated
+          description: Versioning and publishing status metadata of the element.
         name:
           type: string
           minLength: 1
+          description: Human-readable name of the prefab element.
+          example: Cross-Laminated Timber Wall Panel
         description:
           type: string
           minLength: 1
+          description: Detailed description of the prefab element, including its intended
+            use or application.
+          example: This CLT wall panel is suitable for multi-story residential buildings
+            and meets fire resistance standards.
         boundingBox:
           type: object
           properties:
@@ -117,14 +149,65 @@ components:
             - width
             - height
             - depth
-          description: The bounding box of an element in millimeters.
+          description: 3D bounding dimensions of the prefab element, defining its spatial
+            envelope.
         images:
           type: array
           items:
             type: string
           minItems: 1
+          description: List of image URLs showing the prefab element from various angles.
+          example:
+            - https://example.com/images/clt-wall-front.png
         productCategory:
-          $ref: "#/components/schemas/ProductCategory"
+          type: object
+          properties:
+            category:
+              type: string
+              enum:
+                - Boarding
+                - Solid Wall Panels
+                - Closed Wall Panels
+                - Twinwall
+                - Open Wall Panels
+                - Structural Insulated Panels (SIPs)
+                - Insulated Concrete Panels
+                - Prefabricated Balcony
+                - Pod
+                - Whole Building System
+                - Structural Frame
+                - Facade System
+                - Hollowcore Floor
+                - Concrete Lattice Floor
+                - Floor Cassettes
+                - Solid Floor Panels
+                - Volumetric module
+                - Prefabricated Plant
+                - Roof Panel
+                - Roof Truss
+                - Prefabricated Stairs
+              description: Specific product category within building systems.
+              example: Structural Insulated Panels (SIPs)
+            buildingSystem:
+              type: string
+              enum:
+                - Wall
+                - Balcony
+                - Pod
+                - Frame
+                - Facade
+                - Floors
+                - Modules
+                - Plants
+                - Roofs
+                - Stairs
+              description: Building system category to which the product element belongs.
+              example: Facade
+          required:
+            - category
+            - buildingSystem
+          description: Product category classification (e.g., Wall Panels, Stairs, Facade
+            Elements).
         material:
           type: object
           properties:
@@ -136,6 +219,8 @@ components:
                 - Concrete
                 - Hybrid
                 - Other
+              description: Primary material of the product element.
+              example: Steel
             structuralMaterial:
               type: string
               enum:
@@ -144,9 +229,12 @@ components:
                 - Concrete
                 - Hybrid
                 - Other
+              description: Primary material of the product element.
+              example: Steel
           required:
             - finishMaterial
             - structuralMaterial
+          description: Material and physical properties of the prefab element.
         dimensional:
           type: object
           properties:
@@ -155,35 +243,54 @@ components:
               properties:
                 min:
                   type: number
+                  exclusiveMinimum: 0
                 max:
                   type: number
+                  exclusiveMinimum: 0
               required:
                 - min
                 - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
             height:
               type: object
               properties:
                 min:
                   type: number
+                  exclusiveMinimum: 0
                 max:
                   type: number
+                  exclusiveMinimum: 0
               required:
                 - min
                 - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
             length:
               type: object
               properties:
                 min:
                   type: number
+                  exclusiveMinimum: 0
                 max:
                   type: number
+                  exclusiveMinimum: 0
               required:
                 - min
                 - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
           required:
             - width
             - height
             - length
+          description: Dimensional characteristics of the prefab element.
         structuralProperties:
           type: object
           properties:
@@ -192,72 +299,158 @@ components:
               properties:
                 maximumLoad:
                   type: number
-                unit:
+                  exclusiveMinimum: 0
+                  description: The maximum load the element can bear, expressed as a positive
+                    number (e.g., 5.0)
+                forceUnit:
                   type: string
                   enum:
                     - N
                     - kN
                     - lbf
                     - kgf
+                  description: Unit of force measurement, e.g., 'kN' for kilonewtons or 'N' for
+                    newtons
                 loadDistribution:
                   type: string
+                  enum:
+                    - point
+                    - uniform
+                    - triangular
+                    - trapezoidal
+                    - eccentric
+                    - custom
+                  description: The type of load distribution applied to the element.
+                  example: point
+                testStandard:
+                  type: string
+                  enum:
+                    - EN 1991-1-1
+                    - ASTM E72
+                    - ISO 4355
+                  description: Structural load testing standard used to determine maximum load.
+                  example: ASTM E72
               required:
                 - maximumLoad
-                - unit
+                - forceUnit
                 - loadDistribution
+              description: The maximum load the element can bear, expressed as a positive
+                number (e.g., 5.0)
+              example:
+                maximumLoad: 5
+                forceUnit: kN
+                loadDistribution: point
+                testStandard: EN 1991-1-1
             seismicResistance:
-              type: string
-              enum:
-                - Zone 1
-                - Zone 2
-                - Zone 3
-                - Zone 4
+              anyOf:
+                - type: string
+                  enum:
+                    - SDS ≤ 0.167g
+                    - 0.167g < SDS ≤ 0.33g
+                    - 0.33g < SDS ≤ 0.50g
+                    - SDS > 0.50g
+                  description: Seismic Design Spectral Acceleration at short period (SDS), as
+                    defined by ASCE 7 or Eurocode 8 hazard maps.
+                  example: 0.167g < SDS ≤ 0.33g
+                - type: string
+                  description: Custom seismic classification (e.g., Eurocode 8, ASCE 7 zone)
             windLoadResistance:
-              type: string
-              enum:
-                - Class A
-                - Class B
-                - Class C
-                - Class D
+              anyOf:
+                - type: string
+                  enum:
+                    - ≤ 1.0 kPa
+                    - 1.0–2.5 kPa
+                    - 2.5–4.0 kPa
+                    - "> 4.0 kPa"
+                  description: Wind pressure resistance in kilopascals (kPa), typically calculated
+                    per EN 1991-1-4 or ASCE 7-16.
+                  example: 2.5–4.0 kPa
+                - type: string
+                  description: Custom wind classification or rating (e.g., EN 1991-1-4)
+            deflectionLimit:
+              anyOf:
+                - type: number
+                  description: Maximum deflection under load in mm
+                - type: string
+                  pattern: ^L\/\d+$
+                  description: Deflection limit as a span ratio (e.g., 'L/250')
+              description: "Deflection control criteria under load: either fixed displacement
+                in mm or span ratio like L/250"
+            safetyFactor:
+              type: number
+              minimum: 1
+              description: Applied safety factor for structural design, typically 1.0–2.0
+          description: Optional structural performance details like capacity, stiffness,
+            or seismic resistance.
         performance:
           type: object
           properties:
-            resistanceToFireClassification:
-              type: string
-              enum:
-                - A1
-                - A2
-                - B
-                - C
-                - D
-                - E
-                - F
-                - 1-hour
-                - 2-hour
-                - 3-hour
-                - 4-hour
+            fireResistance:
+              type: object
+              properties:
+                reactionToFireClassification:
+                  type: string
+                  enum:
+                    - A1
+                    - A2
+                    - B
+                    - C
+                    - D
+                    - E
+                    - F
+                  description: Euroclass fire reaction classification (EN 13501-1)
+                fireResistanceDuration:
+                  type: string
+                  enum:
+                    - 30min
+                    - 60min
+                    - 90min
+                    - 120min
+                    - 180min
+                    - 240min
+                  description: Fire resistance duration in minutes (EN 1363-1 / ASTM E119)
+              required:
+                - reactionToFireClassification
+                - fireResistanceDuration
             thermalTransmittance:
               type: number
               minimum: 0
               maximum: 2
+              description: Thermal transmittance (U-value) in W/m²K, typically between 0 and 2
             acousticProperties:
               type: object
               properties:
-                soundInsulationRating:
-                  type: string
-                acousticPerformance:
-                  type: string
+                weightedSoundReductionIndex:
+                  type: number
+                  description: Rw value in dB (ISO 717-1)
+                spectrumAdaptationTerm:
+                  type: number
+                  description: Ctr value in dB (optional, ISO 717-1)
               required:
-                - soundInsulationRating
-                - acousticPerformance
+                - weightedSoundReductionIndex
+            airTightness:
+              type: number
+              minimum: 0
+              description: Air permeability (e.g., n50 value in 1/h or q50 in m³/h·m²) - lower
+                values indicate better airtightness
+            vaporPermeability:
+              type: number
+              minimum: 0
+              description: Vapor permeability in µ or Sd value in meters (ISO 12572) -
+                measures resistance to water vapor diffusion
           required:
-            - resistanceToFireClassification
+            - fireResistance
             - thermalTransmittance
+            - airTightness
+            - vaporPermeability
+          description: Optional performance metrics related to strength, insulation, or
+            soundproofing.
         sustainability:
           type: object
           properties:
             countryOfManufacturing:
               type: string
+              description: Country where the element is manufactured
             classification:
               type: string
               enum:
@@ -266,21 +459,25 @@ components:
                 - B
                 - C
                 - D
+              description: Simplified sustainability score, where A+ indicates highest
+                performance. Define based on EPD or lifecycle impact benchmarks.
+              example: A
             VOCEmissions:
               type: string
               enum:
-                - None
-                - Low
-                - Medium
-                - High
+                - None (<0.01 mg/m³)
+                - Very Low (<0.1 mg/m³)
+                - Low (<0.3 mg/m³)
+                - Moderate (0.3–1.0 mg/m³)
+                - High (>1.0 mg/m³)
+              description: Volatile Organic Compounds emissions level (None, Low, Medium,
+                High)
+              example: Low (<0.3 mg/m³)
             recyclability:
-              type: string
-              enum:
-                - 0%
-                - 25%
-                - 50%
-                - 75%
-                - 100%
+              type: number
+              minimum: 0
+              maximum: 100
+              description: Percentage of the element that is recyclable, from 0 to 100%
             energyEfficiency:
               type: string
               enum:
@@ -292,9 +489,73 @@ components:
                 - LEED Silver
                 - LEED Gold
                 - LEED Platinum
+                - BREEAM Good
+                - BREEAM Very Good
+                - BREEAM Excellent
+                - BREEAM Outstanding
+                - Passive House
+                - DGNB Gold
+              description: Energy performance classification, combining insulation tiers and
+                certifications (LEED, BREEAM, etc.).
+              example: LEED Gold
           required:
             - countryOfManufacturing
             - classification
+            - energyEfficiency
+          description: Environmental and sustainability performance such as EPDs or
+            recyclability.
+        reuseAndCircularity:
+          type: object
+          properties:
+            disassemblyRating:
+              type: string
+              enum:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+              description: Ease of disassembly rated from 1 (not possible) to 5 (tool-free),
+                based on ISO 20887:2020.
+              example: "3"
+            reusePotential:
+              type: string
+              enum:
+                - single-use
+                - multi-use
+                - recyclable
+                - remanufacturable
+              description: End-of-life potential of the element, such as single-use,
+                recyclable, or remanufacturable.
+              example: recyclable
+            refurbishmentScope:
+              type: string
+              enum:
+                - none
+                - surface-only
+                - partial
+                - full
+              description: "Extent of refurbishment: none, surface-only, partial, or full
+                reuse of functional components."
+              example: partial
+            circularityCertification:
+              type: string
+              enum:
+                - none
+                - C2C_basic
+                - C2C_bronze
+                - C2C_silver
+                - C2C_gold
+                - C2C_platinum
+              description: Circularity certification level (e.g., C2C_gold, C2C_platinum).
+              example: C2C_gold
+          required:
+            - disassemblyRating
+            - reusePotential
+            - refurbishmentScope
+            - circularityCertification
+          description: Optional data describing how reusable or refurbishable the product
+            is.
         documentationAndCompliance:
           type: object
           properties:
@@ -317,38 +578,29 @@ components:
           required:
             - technicalSpecifications
             - certifications
+          description: Optional metadata linking to certificates, spec sheets, or
+            regulatory documents.
         installationAndConnectivity:
-          type: object
-          properties:
-            connectionType:
-              type: string
-              enum:
-                - Bolt-on
-                - Welded
-                - Clip-on
-                - Adhesive
-                - Mortar
-            installationTime:
-              type: string
-            compatibility:
-              type: string
-              enum:
-                - Steel Frame
-                - Wood Frame
-                - Concrete Structure
-                - Brickwork
-                - Modular Systems
-                - Glass Facades
-                - Composite Materials
+          allOf:
+            - $ref: "#/components/schemas/InstallationAndConnectivity"
+            - description: Optional installation guidelines and connectivity interface
+                descriptions.
         lifecycleAndMaintenance:
           type: object
           properties:
             expectedLifespan:
-              type: string
+              type: number
+              description: Expected lifespan of the prefab element in years.
+              example: 50
             maintenanceRequirements:
               type: string
+              description: Maintenance requirements of the prefab element.
+              example: Regular cleaning and inspection.
             warranty:
               type: string
+              description: Warranty information of the prefab element.
+              example: 10 years warranty.
+          description: Optional data describing maintenance schedules or expected lifecycle.
         aestheticAndCustomizationOptions:
           type: object
           properties:
@@ -360,15 +612,67 @@ components:
               type: string
             modularAdaptability:
               type: string
+          description: Optional aesthetic options like finishes or material variations.
         economicFactors:
           type: object
           properties:
             costPerUnit:
               type: number
-            manufacturingLeadTime:
+              description: Estimated cost per unit of the prefab element.
+              example: 180.5
+            currency:
               type: string
+              enum:
+                - EUR
+                - USD
+                - GBP
+                - CHF
+                - JPY
+                - CNY
+              description: Currency used for the cost estimate (e.g., EUR, USD).
+              example: EUR
+            manufacturingLeadTime:
+              type: number
+              description: Estimated manufacturing lead time in days.
+              example: 21
+          description: Optional cost estimation, lead time, and supply constraints.
+        ifcType:
+          type: string
+          enum:
+            - IfcBeam
+            - IfcChimney
+            - IfcColumn
+            - IfcCovering
+            - IfcCurtainWall
+            - IfcDoor
+            - IfcFooting
+            - IfcMember
+            - IfcPile
+            - IfcPlate
+            - IfcRailing
+            - IfcRamp
+            - IfcRampFlight
+            - IfcRoof
+            - IfcShadingDevice
+            - IfcSlab
+            - IfcStair
+            - IfcStairFlight
+            - IfcWall
+            - IfcWallStandardCase
+            - IfcWindow
+            - IfcBuildingElementProxy
+          description: IFC Building Element types based on IFC 4.3 used in BIM tools for
+            semantic classification. (e.g., IfcWall, IfcSlab).
+          example: IfcWallStandardCase
+        bimModelUrl:
+          type: string
+          format: uri
+          description: Optional URL pointing to a downloadable BIM model or online viewer
+            for the element.
+          example: https://example.com/models/clt-wall.ifc
       required:
         - id
+        - versionMetadata
         - name
         - description
         - boundingBox
@@ -377,62 +681,85 @@ components:
         - material
         - dimensional
       description: Prefab Element
-    ProductCategory:
+    InstallationAndConnectivity:
       type: object
       properties:
-        category:
+        connectionType:
           type: string
           enum:
-            - Boarding
-            - Solid Wall Panels
-            - Closed Wall Panels
-            - Twinwall
-            - Open Wall Panels
-            - Structural Insulated Panels (SIPs)
-            - Insulated Concrete Panels
-            - Prefabricated Balcony
-            - Pod
-            - Whole Building System
-            - Structural Frame
-            - Facade System
-            - Hollowcore Floor
-            - Concrete Lattice Floor
-            - Floor Cassettes
-            - Solid Floor Panels
-            - Volumetric module
-            - Prefabricated Plant
-            - Roof Panel
-            - Roof Truss
-            - Prefabricated Stairs
-        buildingSystem:
+            - Bolt-on
+            - Welded
+            - Clip-on
+            - Adhesive
+            - Mortar
+            - Snap-fit
+            - Plug-and-Play
+            - Dry Joint
+          description: Type of connection used for assembly, including mechanical,
+            chemical, and modular methods.
+          example: Bolt-on
+        installationTime:
+          type: number
+          minimum: 0
+          description: Estimated installation time in minutes
+        compatibility:
           type: string
           enum:
-            - Wall
-            - Balcony
-            - Pod
-            - Frame
-            - Facade
-            - Floors
-            - Modules
-            - Plants
-            - Roofs
-            - Stairs
+            - Steel Frame
+            - Wood Frame
+            - Concrete Structure
+            - Brickwork
+            - Modular Systems
+            - Glass Facades
+            - Composite Materials
+            - CLT
+            - Light Gauge Steel
+            - Masonry Infill
+          description: Structural systems compatible with the prefab element, supporting
+            integration into various construction assemblies.
+          example: Concrete Structure
       required:
-        - category
-        - buildingSystem
-      description: Product Category
-      example:
-        category: Solid Wall Panels
-        buildingSystem: Wall
+        - installationTime
+      description: Describes how the prefab element is installed and what structural
+        systems it is compatible with.
     ElementCreate:
       type: object
       properties:
+        versionMetadata:
+          type: object
+          properties:
+            version:
+              type: string
+              pattern: ^\d+\.\d+\.\d+$
+              description: Semantic version of the prefab element, e.g., '1.0.0'
+            status:
+              type: string
+              enum:
+                - draft
+                - published
+                - deprecated
+              description: Publishing status of the element
+            lastUpdated:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp of the last update
+          required:
+            - version
+            - status
+            - lastUpdated
+          description: Versioning and publishing status metadata of the element.
         name:
           type: string
           minLength: 1
+          description: Human-readable name of the prefab element.
+          example: Cross-Laminated Timber Wall Panel
         description:
           type: string
           minLength: 1
+          description: Detailed description of the prefab element, including its intended
+            use or application.
+          example: This CLT wall panel is suitable for multi-story residential buildings
+            and meets fire resistance standards.
         boundingBox:
           type: object
           properties:
@@ -449,14 +776,65 @@ components:
             - width
             - height
             - depth
-          description: The bounding box of an element in millimeters.
+          description: 3D bounding dimensions of the prefab element, defining its spatial
+            envelope.
         images:
           type: array
           items:
             type: string
           minItems: 1
+          description: List of image URLs showing the prefab element from various angles.
+          example:
+            - https://example.com/images/clt-wall-front.png
         productCategory:
-          $ref: "#/components/schemas/ProductCategory"
+          type: object
+          properties:
+            category:
+              type: string
+              enum:
+                - Boarding
+                - Solid Wall Panels
+                - Closed Wall Panels
+                - Twinwall
+                - Open Wall Panels
+                - Structural Insulated Panels (SIPs)
+                - Insulated Concrete Panels
+                - Prefabricated Balcony
+                - Pod
+                - Whole Building System
+                - Structural Frame
+                - Facade System
+                - Hollowcore Floor
+                - Concrete Lattice Floor
+                - Floor Cassettes
+                - Solid Floor Panels
+                - Volumetric module
+                - Prefabricated Plant
+                - Roof Panel
+                - Roof Truss
+                - Prefabricated Stairs
+              description: Specific product category within building systems.
+              example: Structural Insulated Panels (SIPs)
+            buildingSystem:
+              type: string
+              enum:
+                - Wall
+                - Balcony
+                - Pod
+                - Frame
+                - Facade
+                - Floors
+                - Modules
+                - Plants
+                - Roofs
+                - Stairs
+              description: Building system category to which the product element belongs.
+              example: Facade
+          required:
+            - category
+            - buildingSystem
+          description: Product category classification (e.g., Wall Panels, Stairs, Facade
+            Elements).
         material:
           type: object
           properties:
@@ -468,6 +846,8 @@ components:
                 - Concrete
                 - Hybrid
                 - Other
+              description: Primary material of the product element.
+              example: Steel
             structuralMaterial:
               type: string
               enum:
@@ -476,9 +856,12 @@ components:
                 - Concrete
                 - Hybrid
                 - Other
+              description: Primary material of the product element.
+              example: Steel
           required:
             - finishMaterial
             - structuralMaterial
+          description: Material and physical properties of the prefab element.
         dimensional:
           type: object
           properties:
@@ -487,35 +870,54 @@ components:
               properties:
                 min:
                   type: number
+                  exclusiveMinimum: 0
                 max:
                   type: number
+                  exclusiveMinimum: 0
               required:
                 - min
                 - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
             height:
               type: object
               properties:
                 min:
                   type: number
+                  exclusiveMinimum: 0
                 max:
                   type: number
+                  exclusiveMinimum: 0
               required:
                 - min
                 - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
             length:
               type: object
               properties:
                 min:
                   type: number
+                  exclusiveMinimum: 0
                 max:
                   type: number
+                  exclusiveMinimum: 0
               required:
                 - min
                 - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
           required:
             - width
             - height
             - length
+          description: Dimensional characteristics of the prefab element.
         structuralProperties:
           type: object
           properties:
@@ -524,72 +926,158 @@ components:
               properties:
                 maximumLoad:
                   type: number
-                unit:
+                  exclusiveMinimum: 0
+                  description: The maximum load the element can bear, expressed as a positive
+                    number (e.g., 5.0)
+                forceUnit:
                   type: string
                   enum:
                     - N
                     - kN
                     - lbf
                     - kgf
+                  description: Unit of force measurement, e.g., 'kN' for kilonewtons or 'N' for
+                    newtons
                 loadDistribution:
                   type: string
+                  enum:
+                    - point
+                    - uniform
+                    - triangular
+                    - trapezoidal
+                    - eccentric
+                    - custom
+                  description: The type of load distribution applied to the element.
+                  example: point
+                testStandard:
+                  type: string
+                  enum:
+                    - EN 1991-1-1
+                    - ASTM E72
+                    - ISO 4355
+                  description: Structural load testing standard used to determine maximum load.
+                  example: ASTM E72
               required:
                 - maximumLoad
-                - unit
+                - forceUnit
                 - loadDistribution
+              description: The maximum load the element can bear, expressed as a positive
+                number (e.g., 5.0)
+              example:
+                maximumLoad: 5
+                forceUnit: kN
+                loadDistribution: point
+                testStandard: EN 1991-1-1
             seismicResistance:
-              type: string
-              enum:
-                - Zone 1
-                - Zone 2
-                - Zone 3
-                - Zone 4
+              anyOf:
+                - type: string
+                  enum:
+                    - SDS ≤ 0.167g
+                    - 0.167g < SDS ≤ 0.33g
+                    - 0.33g < SDS ≤ 0.50g
+                    - SDS > 0.50g
+                  description: Seismic Design Spectral Acceleration at short period (SDS), as
+                    defined by ASCE 7 or Eurocode 8 hazard maps.
+                  example: 0.167g < SDS ≤ 0.33g
+                - type: string
+                  description: Custom seismic classification (e.g., Eurocode 8, ASCE 7 zone)
             windLoadResistance:
-              type: string
-              enum:
-                - Class A
-                - Class B
-                - Class C
-                - Class D
+              anyOf:
+                - type: string
+                  enum:
+                    - ≤ 1.0 kPa
+                    - 1.0–2.5 kPa
+                    - 2.5–4.0 kPa
+                    - "> 4.0 kPa"
+                  description: Wind pressure resistance in kilopascals (kPa), typically calculated
+                    per EN 1991-1-4 or ASCE 7-16.
+                  example: 2.5–4.0 kPa
+                - type: string
+                  description: Custom wind classification or rating (e.g., EN 1991-1-4)
+            deflectionLimit:
+              anyOf:
+                - type: number
+                  description: Maximum deflection under load in mm
+                - type: string
+                  pattern: ^L\/\d+$
+                  description: Deflection limit as a span ratio (e.g., 'L/250')
+              description: "Deflection control criteria under load: either fixed displacement
+                in mm or span ratio like L/250"
+            safetyFactor:
+              type: number
+              minimum: 1
+              description: Applied safety factor for structural design, typically 1.0–2.0
+          description: Optional structural performance details like capacity, stiffness,
+            or seismic resistance.
         performance:
           type: object
           properties:
-            resistanceToFireClassification:
-              type: string
-              enum:
-                - A1
-                - A2
-                - B
-                - C
-                - D
-                - E
-                - F
-                - 1-hour
-                - 2-hour
-                - 3-hour
-                - 4-hour
+            fireResistance:
+              type: object
+              properties:
+                reactionToFireClassification:
+                  type: string
+                  enum:
+                    - A1
+                    - A2
+                    - B
+                    - C
+                    - D
+                    - E
+                    - F
+                  description: Euroclass fire reaction classification (EN 13501-1)
+                fireResistanceDuration:
+                  type: string
+                  enum:
+                    - 30min
+                    - 60min
+                    - 90min
+                    - 120min
+                    - 180min
+                    - 240min
+                  description: Fire resistance duration in minutes (EN 1363-1 / ASTM E119)
+              required:
+                - reactionToFireClassification
+                - fireResistanceDuration
             thermalTransmittance:
               type: number
               minimum: 0
               maximum: 2
+              description: Thermal transmittance (U-value) in W/m²K, typically between 0 and 2
             acousticProperties:
               type: object
               properties:
-                soundInsulationRating:
-                  type: string
-                acousticPerformance:
-                  type: string
+                weightedSoundReductionIndex:
+                  type: number
+                  description: Rw value in dB (ISO 717-1)
+                spectrumAdaptationTerm:
+                  type: number
+                  description: Ctr value in dB (optional, ISO 717-1)
               required:
-                - soundInsulationRating
-                - acousticPerformance
+                - weightedSoundReductionIndex
+            airTightness:
+              type: number
+              minimum: 0
+              description: Air permeability (e.g., n50 value in 1/h or q50 in m³/h·m²) - lower
+                values indicate better airtightness
+            vaporPermeability:
+              type: number
+              minimum: 0
+              description: Vapor permeability in µ or Sd value in meters (ISO 12572) -
+                measures resistance to water vapor diffusion
           required:
-            - resistanceToFireClassification
+            - fireResistance
             - thermalTransmittance
+            - airTightness
+            - vaporPermeability
+          description: Optional performance metrics related to strength, insulation, or
+            soundproofing.
         sustainability:
           type: object
           properties:
             countryOfManufacturing:
               type: string
+              description: Country where the element is manufactured
             classification:
               type: string
               enum:
@@ -598,21 +1086,25 @@ components:
                 - B
                 - C
                 - D
+              description: Simplified sustainability score, where A+ indicates highest
+                performance. Define based on EPD or lifecycle impact benchmarks.
+              example: A
             VOCEmissions:
               type: string
               enum:
-                - None
-                - Low
-                - Medium
-                - High
+                - None (<0.01 mg/m³)
+                - Very Low (<0.1 mg/m³)
+                - Low (<0.3 mg/m³)
+                - Moderate (0.3–1.0 mg/m³)
+                - High (>1.0 mg/m³)
+              description: Volatile Organic Compounds emissions level (None, Low, Medium,
+                High)
+              example: Low (<0.3 mg/m³)
             recyclability:
-              type: string
-              enum:
-                - 0%
-                - 25%
-                - 50%
-                - 75%
-                - 100%
+              type: number
+              minimum: 0
+              maximum: 100
+              description: Percentage of the element that is recyclable, from 0 to 100%
             energyEfficiency:
               type: string
               enum:
@@ -624,9 +1116,73 @@ components:
                 - LEED Silver
                 - LEED Gold
                 - LEED Platinum
+                - BREEAM Good
+                - BREEAM Very Good
+                - BREEAM Excellent
+                - BREEAM Outstanding
+                - Passive House
+                - DGNB Gold
+              description: Energy performance classification, combining insulation tiers and
+                certifications (LEED, BREEAM, etc.).
+              example: LEED Gold
           required:
             - countryOfManufacturing
             - classification
+            - energyEfficiency
+          description: Environmental and sustainability performance such as EPDs or
+            recyclability.
+        reuseAndCircularity:
+          type: object
+          properties:
+            disassemblyRating:
+              type: string
+              enum:
+                - "1"
+                - "2"
+                - "3"
+                - "4"
+                - "5"
+              description: Ease of disassembly rated from 1 (not possible) to 5 (tool-free),
+                based on ISO 20887:2020.
+              example: "3"
+            reusePotential:
+              type: string
+              enum:
+                - single-use
+                - multi-use
+                - recyclable
+                - remanufacturable
+              description: End-of-life potential of the element, such as single-use,
+                recyclable, or remanufacturable.
+              example: recyclable
+            refurbishmentScope:
+              type: string
+              enum:
+                - none
+                - surface-only
+                - partial
+                - full
+              description: "Extent of refurbishment: none, surface-only, partial, or full
+                reuse of functional components."
+              example: partial
+            circularityCertification:
+              type: string
+              enum:
+                - none
+                - C2C_basic
+                - C2C_bronze
+                - C2C_silver
+                - C2C_gold
+                - C2C_platinum
+              description: Circularity certification level (e.g., C2C_gold, C2C_platinum).
+              example: C2C_gold
+          required:
+            - disassemblyRating
+            - reusePotential
+            - refurbishmentScope
+            - circularityCertification
+          description: Optional data describing how reusable or refurbishable the product
+            is.
         documentationAndCompliance:
           type: object
           properties:
@@ -649,38 +1205,29 @@ components:
           required:
             - technicalSpecifications
             - certifications
+          description: Optional metadata linking to certificates, spec sheets, or
+            regulatory documents.
         installationAndConnectivity:
-          type: object
-          properties:
-            connectionType:
-              type: string
-              enum:
-                - Bolt-on
-                - Welded
-                - Clip-on
-                - Adhesive
-                - Mortar
-            installationTime:
-              type: string
-            compatibility:
-              type: string
-              enum:
-                - Steel Frame
-                - Wood Frame
-                - Concrete Structure
-                - Brickwork
-                - Modular Systems
-                - Glass Facades
-                - Composite Materials
+          allOf:
+            - $ref: "#/components/schemas/InstallationAndConnectivity"
+            - description: Optional installation guidelines and connectivity interface
+                descriptions.
         lifecycleAndMaintenance:
           type: object
           properties:
             expectedLifespan:
-              type: string
+              type: number
+              description: Expected lifespan of the prefab element in years.
+              example: 50
             maintenanceRequirements:
               type: string
+              description: Maintenance requirements of the prefab element.
+              example: Regular cleaning and inspection.
             warranty:
               type: string
+              description: Warranty information of the prefab element.
+              example: 10 years warranty.
+          description: Optional data describing maintenance schedules or expected lifecycle.
         aestheticAndCustomizationOptions:
           type: object
           properties:
@@ -692,14 +1239,66 @@ components:
               type: string
             modularAdaptability:
               type: string
+          description: Optional aesthetic options like finishes or material variations.
         economicFactors:
           type: object
           properties:
             costPerUnit:
               type: number
-            manufacturingLeadTime:
+              description: Estimated cost per unit of the prefab element.
+              example: 180.5
+            currency:
               type: string
+              enum:
+                - EUR
+                - USD
+                - GBP
+                - CHF
+                - JPY
+                - CNY
+              description: Currency used for the cost estimate (e.g., EUR, USD).
+              example: EUR
+            manufacturingLeadTime:
+              type: number
+              description: Estimated manufacturing lead time in days.
+              example: 21
+          description: Optional cost estimation, lead time, and supply constraints.
+        ifcType:
+          type: string
+          enum:
+            - IfcBeam
+            - IfcChimney
+            - IfcColumn
+            - IfcCovering
+            - IfcCurtainWall
+            - IfcDoor
+            - IfcFooting
+            - IfcMember
+            - IfcPile
+            - IfcPlate
+            - IfcRailing
+            - IfcRamp
+            - IfcRampFlight
+            - IfcRoof
+            - IfcShadingDevice
+            - IfcSlab
+            - IfcStair
+            - IfcStairFlight
+            - IfcWall
+            - IfcWallStandardCase
+            - IfcWindow
+            - IfcBuildingElementProxy
+          description: IFC Building Element types based on IFC 4.3 used in BIM tools for
+            semantic classification. (e.g., IfcWall, IfcSlab).
+          example: IfcWallStandardCase
+        bimModelUrl:
+          type: string
+          format: uri
+          description: Optional URL pointing to a downloadable BIM model or online viewer
+            for the element.
+          example: https://example.com/models/clt-wall.ifc
       required:
+        - versionMetadata
         - name
         - description
         - boundingBox
