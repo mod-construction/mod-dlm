@@ -6,4 +6,6 @@ const AestheticAndCustomizationOptionsSchema = z.object({
     modularAdaptability: z.string().optional(),
 });
 
-export { AestheticAndCustomizationOptionsSchema };
+type AestheticAndCustomizationOptions = z.infer<typeof AestheticAndCustomizationOptionsSchema>;
+
+export { AestheticAndCustomizationOptionsSchema, AestheticAndCustomizationOptions };

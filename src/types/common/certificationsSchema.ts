@@ -4,4 +4,7 @@ const CertificationsSchema = z.object({
     certificationTypes: z.array(z.string()),
     regulatoryApprovals: z.array(z.string())
 });
-export { CertificationsSchema };
+
+type Certifications = z.infer<typeof CertificationsSchema>;
+
+export { CertificationsSchema, Certifications };

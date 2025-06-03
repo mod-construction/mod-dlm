@@ -5,4 +5,7 @@ const DocumentationAndComplianceSchema = z.object({
     technicalSpecifications: z.string(),
     certifications: CertificationsSchema
 });
-export { DocumentationAndComplianceSchema };
+
+type DocumentationAndCompliance = z.infer<typeof DocumentationAndComplianceSchema>;
+
+export { DocumentationAndComplianceSchema, DocumentationAndCompliance };

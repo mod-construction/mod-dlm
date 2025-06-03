@@ -51,5 +51,6 @@ const ProductCategorySchema = RawProductCategorySchema.refine(
   ref: "ProductCategory",
 });
 
-export { ProductCategorySchema, productCategoryValues };
-export type ProductCategory = z.infer<typeof ProductCategorySchema>;
+type ProductCategory = z.infer<typeof ProductCategorySchema>;
+
+export { ProductCategorySchema, productCategoryValues, ProductCategory };

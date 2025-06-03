@@ -12,4 +12,6 @@ const MaterialCompositionSchema = z.object({
 
 type Material = z.infer<typeof MaterialSchema>;
 
-export { MaterialSchema, MaterialCompositionSchema, Material };
+type MaterialComposition = z.infer<typeof MaterialCompositionSchema>;
+
+export { MaterialSchema, MaterialCompositionSchema, Material, MaterialComposition };

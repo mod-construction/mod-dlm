@@ -2,3 +2,4 @@ node_modules
 dist
 openapi
 generator-configs
+code_gen

@@ -6,4 +6,7 @@ const DimensionalAttributesSchema = z.object({
     height: RangeSchema,
     length: RangeSchema
 });
-export { DimensionalAttributesSchema };
+
+type DimensionalAttributes = z.infer<typeof DimensionalAttributesSchema>;
+
+export { DimensionalAttributesSchema, DimensionalAttributes };

@@ -5,4 +5,7 @@ const ProductMaterialAttributesSchema = z.object({
     finishMaterial: ProductMaterialEnum,
     structuralMaterial: ProductMaterialEnum
 });
-export { ProductMaterialAttributesSchema };
+
+type ProductMaterialAttributes = z.infer<typeof ProductMaterialAttributesSchema>;
+
+export { ProductMaterialAttributesSchema, ProductMaterialAttributes };

@@ -4,4 +4,7 @@ const ThermalPropertiesSchema = z.object({
     uValue: z.number(),
     insulationType: z.string()
 });
-export { ThermalPropertiesSchema };
+
+type ThermalProperties = z.infer<typeof ThermalPropertiesSchema>;
+
+export { ThermalPropertiesSchema, ThermalProperties };
