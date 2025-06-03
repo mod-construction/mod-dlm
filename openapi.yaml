@@ -398,7 +398,9 @@ components:
                     - D
                     - E
                     - F
-                  description: Euroclass fire reaction classification (EN 13501-1)
+                  description: Fire resistance classification based on Euroclass standards (EN
+                    13501-1).
+                  example: A1
                 fireResistanceDuration:
                   type: string
                   enum:
@@ -408,10 +410,16 @@ components:
                     - 120min
                     - 180min
                     - 240min
-                  description: Fire resistance duration in minutes (EN 1363-1 / ASTM E119)
+                  description: Fire resistance duration in minutes (EN 1363-1 / ASTM E119).
+                  example: 30min
               required:
                 - reactionToFireClassification
                 - fireResistanceDuration
+              description: Fire resistance classification of the material, based on Euroclass
+                standards (EN 13501-1).
+              example:
+                reactionToFireClassification: A1
+                fireResistanceDuration: 30min
             thermalTransmittance:
               type: number
               minimum: 0
@@ -1025,7 +1033,9 @@ components:
                     - D
                     - E
                     - F
-                  description: Euroclass fire reaction classification (EN 13501-1)
+                  description: Fire resistance classification based on Euroclass standards (EN
+                    13501-1).
+                  example: A1
                 fireResistanceDuration:
                   type: string
                   enum:
@@ -1035,10 +1045,16 @@ components:
                     - 120min
                     - 180min
                     - 240min
-                  description: Fire resistance duration in minutes (EN 1363-1 / ASTM E119)
+                  description: Fire resistance duration in minutes (EN 1363-1 / ASTM E119).
+                  example: 30min
               required:
                 - reactionToFireClassification
                 - fireResistanceDuration
+              description: Fire resistance classification of the material, based on Euroclass
+                standards (EN 13501-1).
+              example:
+                reactionToFireClassification: A1
+                fireResistanceDuration: 30min
             thermalTransmittance:
               type: number
               minimum: 0
