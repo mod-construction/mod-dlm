@@ -134,14 +134,14 @@ const VOCEmissions = z
   .enum([
     "None (<0.01 mg/m³)",
     "Very Low (<0.1 mg/m³)",
-    "Low (<0.3 mg/m³)",
+    "Low (0.1–0.3 mg/m³)",
     "Moderate (0.3–1.0 mg/m³)",
     "High (>1.0 mg/m³)",
   ])
   .openapi({
     description:
       "Qualitative VOC emissions categories with indicative thresholds based on ISO 16000 or GREENGUARD standards.",
-    example: "Low (<0.3 mg/m³)",
+    example: "Low (0.1–0.3 mg/m³)",
   });
 
 /**

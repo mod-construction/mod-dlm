@@ -9,10 +9,9 @@ import { LifecycleAndMaintenanceSchema } from "../common/lifecycleAndMaintenance
 import { PerformanceAttributesSchema } from "../common/performanceAttributesSchema";
 import { ProductMaterialAttributesSchema } from "../common/productMaterialAttributesSchema";
 import { StructuralPropertiesSchema } from "../common/structuralPropertiesSchema";
-import { SustainabilityAttributesSchema } from "../common/sustainabilityAttributesSchema";
+import { SustainabilitySchema } from "../common/sustainabilitySchema";
 import { ProductCategorySchema } from "../common/productCategorySchema";
 import { VersionMetadataSchema } from "../common/versionMetadataSchema";
-import { ReuseAndCircularitySchema } from "../common/reuseAndCircularitySchema";
 import { IfcBuildingElementEnum } from "../common/enums";
 
 const ElementIdSchema = z.string().uuid().openapi({
@@ -85,15 +84,10 @@ const PrefabElementSchema = z.object({
         .openapi({
             description: "Optional performance metrics related to strength, insulation, or soundproofing."
         }),
-    sustainability: SustainabilityAttributesSchema.optional()
+    sustainability: SustainabilitySchema.optional()
         .describe("Optional environmental attributes including embodied carbon or certifications.")
         .openapi({
             description: "Environmental and sustainability performance such as EPDs or recyclability."
-        }),
-    reuseAndCircularity: ReuseAndCircularitySchema.optional()
-        .describe("Optional circularity data for reuse, disassembly, and refurbishment.")
-        .openapi({
-            description: "Optional data describing how reusable or refurbishable the product is."
         }),
     documentationAndCompliance: DocumentationAndComplianceSchema.optional()
         .describe("Optional links to technical documents, certificates, and compliance data.")
