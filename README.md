@@ -57,126 +57,148 @@ You can always find the most up-to-date API documentation here: https://mod-cons
 ```mermaid
 erDiagram
     PrefabElement {
-        string id
+        UUID id
         string name
         string description
-        BoundingBox boundingBox
         string[] images
-        string buildingSystem
-        string productCategory
-        Material material
-        Dimensional dimensional
-        StructuralProperties structuralProperties
-        Performance performance
-        Sustainability sustainability
-        DocumentationAndCompliance documentationAndCompliance
-        InstallationAndConnectivity installationAndConnectivity
-        LifecycleAndMaintenance lifecycleAndMaintenance
-        AestheticAndCustomizationOptions aestheticAndCustomizationOptions
-        EconomicFactors economicFactors
+        string ifcType
+        string bimModelUrl
     }
 
+    PrefabElement ||--|| VersionMetadata : has
+    VersionMetadata {
+        string version
+        string status
+        date lastUpdated
+    }
+
+    PrefabElement ||--|| BoundingBox : has
     BoundingBox {
-        number width
-        number height
-        number depth
+        float width
+        float height
+        float depth
     }
 
+    PrefabElement ||--|| ProductCategory : has
+    ProductCategory {
+        string category
+        string buildingSystem
+    }
+
+    PrefabElement ||--|| Material : has
     Material {
         string finishMaterial
         string structuralMaterial
     }
 
+    PrefabElement ||--|| Dimensional : has
     Dimensional {
         Range width
         Range height
         Range length
     }
 
+    Dimensional ||--|| Range : uses
     Range {
-        number min
-        number max
+        float min
+        float max
     }
 
+    PrefabElement ||--|| StructuralProperties : has
     StructuralProperties {
-        LoadBearingCapacity loadBearingCapacity
-        string seismicResistance
-        string windLoadResistance
+        float safetyFactor
     }
 
+    StructuralProperties ||--|| LoadBearingCapacity : has
     LoadBearingCapacity {
-        number maximumLoad
-        string unit
+        float maximumLoad
+        string forceUnit
         string loadDistribution
+        string testStandard
     }
 
+    PrefabElement ||--|| Performance : has
     Performance {
-        string resistanceToFireClassification
-        number thermalTransmittance
-        AcousticProperties acousticProperties
+        float thermalTransmittance
+        float airTightness
+        float vaporPermeability
     }
 
+    Performance ||--|| FireResistance : has
+    FireResistance {
+        string reactionToFireClassification
+        string fireResistanceDuration
+    }
+
+    Performance ||--|| AcousticProperties : has
     AcousticProperties {
-        string soundInsulationRating
-        string acousticPerformance
+        float weightedSoundReductionIndex
+        float spectrumAdaptationTerm
     }
 
+    PrefabElement ||--|| Sustainability : has
     Sustainability {
-        string countryOfManufacturing
+    }
+
+    Sustainability ||--|| EnvironmentalImpact : has
+    EnvironmentalImpact {
         string classification
         string VOCEmissions
-        string recyclability
+        float recyclability
         string energyEfficiency
     }
 
-    DocumentationAndCompliance {
-        string technicalSpecifications
-        Certifications certifications
+    Sustainability ||--|| Circularity : has
+    Circularity {
+        string disassemblyRating
+        string reusePotential
+        string refurbishmentScope
+        string circularityCertification
     }
 
+    Sustainability ||--|| Origin : has
+    Origin {
+        string countryOfManufacturing
+    }
+
+    PrefabElement ||--|| DocumentationCompliance : has
+    DocumentationCompliance {
+        string technicalSpecifications
+    }
+
+    DocumentationCompliance ||--|| Certifications : has
     Certifications {
         string[] certificationTypes
         string[] regulatoryApprovals
     }
 
-    InstallationAndConnectivity {
+    PrefabElement ||--|| InstallationConnectivity : has
+    InstallationConnectivity {
         string connectionType
-        string installationTime
+        int installationTime
         string compatibility
     }
 
-    LifecycleAndMaintenance {
-        string expectedLifespan
+    PrefabElement ||--|| LifecycleMaintenance : has
+    LifecycleMaintenance {
+        int expectedLifespan
         string maintenanceRequirements
         string warranty
     }
 
-    AestheticAndCustomizationOptions {
+    PrefabElement ||--|| AestheticCustomization : has
+    AestheticCustomization {
         string[] colorOptions
         string texture
         string modularAdaptability
     }
 
+    PrefabElement ||--|| EconomicFactors : has
     EconomicFactors {
-        number costPerUnit
-        string manufacturingLeadTime
+        float costPerUnit
+        string currency
+        int manufacturingLeadTime
     }
-
-    PrefabElement ||--o{ BoundingBox : has
-    PrefabElement ||--o{ Material : has
-    PrefabElement ||--o{ Dimensional : has
-    PrefabElement ||--o{ StructuralProperties : has
-    StructuralProperties ||--o{ LoadBearingCapacity : contains
-    PrefabElement ||--o{ Performance : has
-    Performance ||--o{ AcousticProperties : contains
-    PrefabElement ||--o{ Sustainability : has
-    PrefabElement ||--o{ DocumentationAndCompliance : has
-    DocumentationAndCompliance ||--o{ Certifications : contains
-    PrefabElement ||--o{ InstallationAndConnectivity : has
-    PrefabElement ||--o{ LifecycleAndMaintenance : has
-    PrefabElement ||--o{ AestheticAndCustomizationOptions : has
-    PrefabElement ||--o{ EconomicFactors : has
-    Dimensional ||--o{ Range : contains
 ```
 
 ## Getting Started
