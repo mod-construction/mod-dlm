@@ -19,7 +19,7 @@ const productCategoryValues: z.infer<typeof RawProductCategorySchema>[] = [
   { category: "Structural Insulated Panels (SIPs)", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
   { category: "Insulated Concrete Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
   { category: "Whole Building System", buildingSystem: "Frame", ifcCompatibleElements: ["IfcBuildingElementProxy","IfcWall","IfcSlab","IfcRoof","IfcColumn","IfcBeam"] },
-  { category: "Structural Frame", buildingSystem: "Frame", ifcCompatibleElements: ["IfcFrame","IfcBuildingElementProxy","IfcColumn","IfcBeam","IfcMember"] },
+  { category: "Structural Frame", buildingSystem: "Frame", ifcCompatibleElements: ["IfcBuildingElementProxy","IfcColumn","IfcBeam","IfcMember"] },
   { category: "Hollowcore Floor", buildingSystem: "Floors", ifcCompatibleElements: ["IfcSlab","IfcBuildingElementProxy"] },
   { category: "Concrete Lattice Floor", buildingSystem: "Floors", ifcCompatibleElements: ["IfcSlab","IfcBuildingElementProxy"] },
   { category: "Floor Cassettes", buildingSystem: "Floors", ifcCompatibleElements: ["IfcSlab","IfcBuildingElementProxy"] },
