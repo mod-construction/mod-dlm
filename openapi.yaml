@@ -174,8 +174,8 @@ components:
                 - Insulated Concrete Panels
                 - Prefabricated Balcony
                 - Pod
-                - Beam
-                - Column
+                - Structural Beam
+                - Structural Column
                 - Whole Building System
                 - Structural Frame
                 - Facade System
@@ -851,8 +851,8 @@ components:
                 - Insulated Concrete Panels
                 - Prefabricated Balcony
                 - Pod
-                - Beam
-                - Column
+                - Structural Beam
+                - Structural Column
                 - Whole Building System
                 - Structural Frame
                 - Facade System
