@@ -60,6 +60,7 @@ const BuildingSystemEnum = z
     "Plants",
     "Roofs",
     "Stairs",
+    "Structure",
   ])
   .openapi({
     description:
@@ -77,6 +78,8 @@ const ProductCategoryEnum = z
     "Insulated Concrete Panels",
     "Prefabricated Balcony",
     "Pod",
+    "Beam",
+    "Column",
     "Whole Building System",
     "Structural Frame",
     "Facade System",
