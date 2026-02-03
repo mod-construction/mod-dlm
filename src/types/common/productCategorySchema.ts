@@ -11,13 +11,13 @@ const RawProductCategorySchema = z.object({
 });
 
 const productCategoryValues: z.infer<typeof RawProductCategorySchema>[] = [
-  { category: "Boarding", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
-  { category: "Solid Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
-  { category: "Closed Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
-  { category: "Twinwall", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
-  { category: "Open Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
-  { category: "Structural Insulated Panels (SIPs)", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
-  { category: "Insulated Concrete Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall","IfcPartition"] },
+  { category: "Boarding", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
+  { category: "Solid Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
+  { category: "Closed Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
+  { category: "Twinwall", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
+  { category: "Open Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
+  { category: "Structural Insulated Panels (SIPs)", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
+  { category: "Insulated Concrete Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy","IfcCurtainWall"] },
   { category: "Whole Building System", buildingSystem: "Frame", ifcCompatibleElements: ["IfcBuildingElementProxy","IfcWall","IfcSlab","IfcRoof","IfcColumn","IfcBeam"] },
   { category: "Structural Frame", buildingSystem: "Frame", ifcCompatibleElements: ["IfcFrame","IfcBuildingElementProxy","IfcColumn","IfcBeam","IfcMember"] },
   { category: "Hollowcore Floor", buildingSystem: "Floors", ifcCompatibleElements: ["IfcSlab","IfcBuildingElementProxy"] },
