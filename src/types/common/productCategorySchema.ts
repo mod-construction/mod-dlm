@@ -32,8 +32,8 @@ const productCategoryValues: z.infer<typeof RawProductCategorySchema>[] = [
   { category: "Volumetric module", buildingSystem: "Modules", ifcCompatibleElements: ["IfcBuildingElementProxy","IfcWall","IfcSlab","IfcRoof"] },
   { category: "Prefabricated Plant", buildingSystem: "Plants", ifcCompatibleElements: ["IfcBuildingElementProxy"] },
   { category: "Prefabricated Stairs", buildingSystem: "Stairs", ifcCompatibleElements: ["IfcStair","IfcBuildingElementProxy","IfcRamp"] },
-  { category: "Beam", buildingSystem: "Structure", ifcCompatibleElements: ["IfcBeam", "IfcMember","IfcBuildingElementProxy"] },
-  { category: "Column", buildingSystem: "Structure", ifcCompatibleElements: ["IfcColumn", "IfcMember","IfcBuildingElementProxy"] },
+  { category: "Structural Beam", buildingSystem: "Structure", ifcCompatibleElements: ["IfcBeam", "IfcMember","IfcBuildingElementProxy"] },
+  { category: "Structural Column", buildingSystem: "Structure", ifcCompatibleElements: ["IfcColumn", "IfcMember","IfcBuildingElementProxy"] },
 ];
 
 const ProductCategorySchema = RawProductCategorySchema.refine(
