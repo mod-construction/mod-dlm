@@ -83,6 +83,7 @@ const ProductCategoryEnum = z
     "Whole Building System",
     "Structural Frame",
     "Facade System",
+    "Curtain Wall",
     "Hollowcore Floor",
     "Concrete Lattice Floor",
     "Floor Cassettes",
