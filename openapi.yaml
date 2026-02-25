@@ -136,19 +136,33 @@ components:
         boundingBox:
           type: object
           properties:
-            width:
-              type: number
-              exclusiveMinimum: 0
-            height:
-              type: number
-              exclusiveMinimum: 0
-            depth:
-              type: number
-              exclusiveMinimum: 0
+            min:
+              type: array
+              maxItems: 3
+              minItems: 3
+              prefixItems:
+                - type: number
+                  const: 0
+                - type: number
+                  const: 0
+                - type: number
+                  const: 0
+              description: Minimum corner (always at local origin)
+            max:
+              type: array
+              maxItems: 3
+              minItems: 3
+              prefixItems:
+                - type: number
+                  exclusiveMinimum: 0
+                - type: number
+                  exclusiveMinimum: 0
+                - type: number
+                  exclusiveMinimum: 0
+              description: Maximum corner in millimeters
           required:
-            - width
-            - height
-            - depth
+            - min
+            - max
           description: 3D bounding dimensions of the prefab element, defining its spatial
             envelope.
         images:
@@ -814,19 +828,33 @@ components:
         boundingBox:
           type: object
           properties:
-            width:
-              type: number
-              exclusiveMinimum: 0
-            height:
-              type: number
-              exclusiveMinimum: 0
-            depth:
-              type: number
-              exclusiveMinimum: 0
+            min:
+              type: array
+              maxItems: 3
+              minItems: 3
+              prefixItems:
+                - type: number
+                  const: 0
+                - type: number
+                  const: 0
+                - type: number
+                  const: 0
+              description: Minimum corner (always at local origin)
+            max:
+              type: array
+              maxItems: 3
+              minItems: 3
+              prefixItems:
+                - type: number
+                  exclusiveMinimum: 0
+                - type: number
+                  exclusiveMinimum: 0
+                - type: number
+                  exclusiveMinimum: 0
+              description: Maximum corner in millimeters
           required:
-            - width
-            - height
-            - depth
+            - min
+            - max
           description: 3D bounding dimensions of the prefab element, defining its spatial
             envelope.
         images:
