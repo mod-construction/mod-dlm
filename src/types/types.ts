@@ -1,6 +1,6 @@
 export * from "./common/acousticPropertiesSchema";
 export * from "./common/aestheticAndCustomizationOptionsSchema";
-export * from "./common/boundingBoxSchema";
+export * from "./common/geometrySchema";
 export * from "./common/certificationsSchema";
 export * from "./common/dimensionalAttributesSchema";
 export * from "./common/documentationAndComplianceSchema";
