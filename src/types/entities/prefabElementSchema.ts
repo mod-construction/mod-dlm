@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { AestheticAndCustomizationOptionsSchema } from "../common/aestheticAndCustomizationOptionsSchema";
-import { BoundingBoxSchema } from "../common/geometrySchema";
+import { BoundingBoxSchema} from "../common/boundingBoxSchema";
 import { DimensionalAttributesSchema } from "../common/dimensionalAttributesSchema";
 import { DocumentationAndComplianceSchema } from "../common/documentationAndComplianceSchema";
 import { EconomicFactorsSchema } from "../common/economicFactorsSchema";
