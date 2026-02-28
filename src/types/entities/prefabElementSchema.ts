@@ -49,7 +49,7 @@ const PrefabElementSchema = z.object({
             example: "This CLT wall panel is suitable for multi-story residential buildings and meets fire resistance standards."
         }),
     boundingBox: BoundingBoxSchema
-        .describe("3D bounding dimensions of the prefab element.")
+        .describe("3D bounding dimensions of the prefab element, located at the World Origin 0,0,0.")
         .openapi({
             description: "3D bounding dimensions of the prefab element, defining its spatial envelope."
         }),
