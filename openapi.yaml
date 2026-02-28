@@ -333,10 +333,61 @@ components:
               example:
                 min: 10
                 max: 20
+            depth:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
+            thickness:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
+            radius:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
           required:
             - width
             - height
             - length
+            - depth
+            - thickness
+            - radius
           description: Dimensional characteristics of the prefab element.
         structuralProperties:
           type: object
@@ -1025,10 +1076,61 @@ components:
               example:
                 min: 10
                 max: 20
+            depth:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
+            thickness:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
+            radius:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
           required:
             - width
             - height
             - length
+            - depth
+            - thickness
+            - radius
           description: Dimensional characteristics of the prefab element.
         structuralProperties:
           type: object
