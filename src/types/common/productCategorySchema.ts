@@ -11,10 +11,7 @@ const RawProductCategorySchema = z.object({
 });
 
 const productCategoryValues: z.infer<typeof RawProductCategorySchema>[] = [
-  { category: "Boarding", 
-    buildingSystem: "Wall", 
-    ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy"] 
-    },
+  { category: "Boarding", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy"] },
   { category: "Solid Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy"] },
   { category: "Closed Wall Panels", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy"] },
   { category: "Twinwall", buildingSystem: "Wall", ifcCompatibleElements: ["IfcWall","IfcBuildingElementProxy"] },
