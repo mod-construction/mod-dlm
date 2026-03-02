@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { AestheticAndCustomizationOptionsSchema } from "../common/aestheticAndCustomizationOptionsSchema";
-import { BoundingBoxSchema} from "../common/boundingBoxSchema";
+import { BoundingBoxSchema } from "../common/boundingBoxSchema";
 import { DimensionalAttributesSchema } from "../common/dimensionalAttributesSchema";
 import { DocumentationAndComplianceSchema } from "../common/documentationAndComplianceSchema";
 import { EconomicFactorsSchema } from "../common/economicFactorsSchema";
@@ -49,9 +49,9 @@ const PrefabElementSchema = z.object({
             example: "This CLT wall panel is suitable for multi-story residential buildings and meets fire resistance standards."
         }),
     boundingBox: BoundingBoxSchema
-        .describe("3D bounding dimensions of the prefab element, located at the World Origin 0,0,0.")
+        .describe("3D bounding dimensions of the prefab element, located at the Local Origin (0,0,0).")
         .openapi({
-            description: "3D bounding dimensions of the prefab element, defining its spatial envelope."
+            description: "3D bounding dimensions of the prefab element, located at the local origin (0,0,0)."
         }),
     images: z.array(z.string()).min(1, "At least one image is required")
         .describe("Image URLs of the element")
