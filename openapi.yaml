@@ -142,12 +142,13 @@ components:
               minItems: 3
               prefixItems:
                 - type: number
-                  const: 0
                 - type: number
-                  const: 0
                 - type: number
-                  const: 0
-              description: Minimum corner (always at local origin)
+              default:
+                - 0
+                - 0
+                - 0
+              description: Minimum corner (defaults at local origin (0,0,0)) in millimeters
             max:
               type: array
               maxItems: 3
@@ -159,12 +160,13 @@ components:
                   exclusiveMinimum: 0
                 - type: number
                   exclusiveMinimum: 0
-              description: Maximum corner in millimeters
+              description: Maximum corner in millimeters and defined in the local coordianate
+                system
           required:
             - min
             - max
-          description: 3D bounding dimensions of the prefab element, defining its spatial
-            envelope.
+          description: 3D bounding dimensions of the prefab element, located at the local
+            origin (0,0,0).
         images:
           type: array
           items:
@@ -285,6 +287,22 @@ components:
         dimensional:
           type: object
           properties:
+            length:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
             width:
               type: object
               properties:
@@ -302,22 +320,6 @@ components:
                 min: 10
                 max: 20
             height:
-              type: object
-              properties:
-                min:
-                  type: number
-                  exclusiveMinimum: 0
-                max:
-                  type: number
-                  exclusiveMinimum: 0
-              required:
-                - min
-                - max
-              description: A range of dimensions in millimeters
-              example:
-                min: 10
-                max: 20
-            length:
               type: object
               properties:
                 min:
@@ -382,9 +384,9 @@ components:
                 min: 10
                 max: 20
           required:
+            - length
             - width
             - height
-            - length
             - depth
             - thickness
             - radius
@@ -885,12 +887,13 @@ components:
               minItems: 3
               prefixItems:
                 - type: number
-                  const: 0
                 - type: number
-                  const: 0
                 - type: number
-                  const: 0
-              description: Minimum corner (always at local origin)
+              default:
+                - 0
+                - 0
+                - 0
+              description: Minimum corner (defaults at local origin (0,0,0)) in millimeters
             max:
               type: array
               maxItems: 3
@@ -902,12 +905,12 @@ components:
                   exclusiveMinimum: 0
                 - type: number
                   exclusiveMinimum: 0
-              description: Maximum corner in millimeters
+              description: Maximum corner in millimeters and defined in the local coordianate
+                system
           required:
-            - min
             - max
-          description: 3D bounding dimensions of the prefab element, defining its spatial
-            envelope.
+          description: 3D bounding dimensions of the prefab element, located at the local
+            origin (0,0,0).
         images:
           type: array
           items:
@@ -1028,6 +1031,22 @@ components:
         dimensional:
           type: object
           properties:
+            length:
+              type: object
+              properties:
+                min:
+                  type: number
+                  exclusiveMinimum: 0
+                max:
+                  type: number
+                  exclusiveMinimum: 0
+              required:
+                - min
+                - max
+              description: A range of dimensions in millimeters
+              example:
+                min: 10
+                max: 20
             width:
               type: object
               properties:
@@ -1045,22 +1064,6 @@ components:
                 min: 10
                 max: 20
             height:
-              type: object
-              properties:
-                min:
-                  type: number
-                  exclusiveMinimum: 0
-                max:
-                  type: number
-                  exclusiveMinimum: 0
-              required:
-                - min
-                - max
-              description: A range of dimensions in millimeters
-              example:
-                min: 10
-                max: 20
-            length:
               type: object
               properties:
                 min:
@@ -1125,9 +1128,9 @@ components:
                 min: 10
                 max: 20
           required:
+            - length
             - width
             - height
-            - length
             - depth
             - thickness
             - radius
