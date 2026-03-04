@@ -136,19 +136,6 @@ components:
         boundingBox:
           type: object
           properties:
-            min:
-              type: array
-              maxItems: 3
-              minItems: 3
-              prefixItems:
-                - type: number
-                - type: number
-                - type: number
-              default:
-                - 0
-                - 0
-                - 0
-              description: Minimum corner (defaults at local origin (0,0,0)) in millimeters
             max:
               type: array
               maxItems: 3
@@ -163,7 +150,6 @@ components:
               description: Maximum corner in millimeters and defined in the local coordianate
                 system
           required:
-            - min
             - max
           description: 3D bounding dimensions of the prefab element, located at the local
             origin (0,0,0).
@@ -881,19 +867,6 @@ components:
         boundingBox:
           type: object
           properties:
-            min:
-              type: array
-              maxItems: 3
-              minItems: 3
-              prefixItems:
-                - type: number
-                - type: number
-                - type: number
-              default:
-                - 0
-                - 0
-                - 0
-              description: Minimum corner (defaults at local origin (0,0,0)) in millimeters
             max:
               type: array
               maxItems: 3
