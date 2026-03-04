@@ -1,12 +1,19 @@
 import { z } from "zod";
 
-const BoundingBoxSchema = z.object({
-    width: z.number().gt(0, "Width must be greater than 0"),
-    height: z.number().gt(0, "Height must be greater than 0"),
-    depth: z.number().gt(0, "Depth must be greater than 0")
+const BoundingBoxSchema = z.object({  
+  max: z.tuple([
+    z.number().positive(),  
+    z.number().positive(),  
+    z.number().positive()  
+  ]).describe("Maximum corner in millimeters and defined in the local coordianate system"),
+  
 }).openapi({
-    description: "The bounding box of an element in millimeters.",
+  description: "Local bounding box aligned to element's own axes, origin at (0,0,0). Dimensions in millimeters."
 });
 
 type BoundingBox = z.infer<typeof BoundingBoxSchema>;
-export { BoundingBoxSchema, BoundingBox };
+
+export { 
+  BoundingBoxSchema,
+  BoundingBox,
+};

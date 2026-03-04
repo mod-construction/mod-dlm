@@ -56,6 +56,8 @@ You can always find the most up-to-date [API documentation here](https://mod-con
 
 ## Data Model
 
+> **Note on Units**: All units decsribing the geometry of prefab elements are expressed in **millimeters (mm)** unless otherwise specified.
+
 ```mermaid
 erDiagram
     PrefabElement {
