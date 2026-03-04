@@ -49,9 +49,9 @@ const PrefabElementSchema = z.object({
             example: "This CLT wall panel is suitable for multi-story residential buildings and meets fire resistance standards."
         }),
     boundingBox: BoundingBoxSchema
-        .describe("3D bounding dimensions of the prefab element.")
+        .describe("3D bounding dimensions of the prefab element, located at the Local Origin (0,0,0).")
         .openapi({
-            description: "3D bounding dimensions of the prefab element, defining its spatial envelope."
+            description: "3D bounding dimensions of the prefab element, located at the local origin (0,0,0)."
         }),
     images: z.array(z.string()).min(1, "At least one image is required")
         .describe("Image URLs of the element")
