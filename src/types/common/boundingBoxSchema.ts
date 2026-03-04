@@ -1,12 +1,6 @@
 import { z } from "zod";
 
-const BoundingBoxSchema = z.object({
-  min: z.tuple([
-    z.number(),  
-    z.number(),
-    z.number()
-  ]).default([0, 0, 0]).describe("Minimum corner (defaults at local origin (0,0,0)) in millimeters"),
-  
+const BoundingBoxSchema = z.object({  
   max: z.tuple([
     z.number().positive(),  
     z.number().positive(),  
