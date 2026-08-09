@@ -61,6 +61,7 @@ const BuildingSystemEnum = z
     "Roofs",
     "Stairs",
     "Structure",
+    "Foundation",
   ])
   .openapi({
     description:
@@ -93,6 +94,8 @@ const ProductCategoryEnum = z
     "Roof Panel",
     "Roof Truss",
     "Prefabricated Stairs",
+    "Foundation Slab",
+    "Footing",
   ])
   .openapi({
     description: "Specific product category within building systems.",

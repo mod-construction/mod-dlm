@@ -35,6 +35,8 @@ const productCategoryValues: z.infer<typeof RawProductCategorySchema>[] = [
   { category: "Prefabricated Stairs", buildingSystem: "Stairs", ifcCompatibleElements: ["IfcStair","IfcBuildingElementProxy","IfcRamp"] },
   { category: "Structural Beam", buildingSystem: "Structure", ifcCompatibleElements: ["IfcBeam", "IfcMember","IfcBuildingElementProxy"] },
   { category: "Structural Column", buildingSystem: "Structure", ifcCompatibleElements: ["IfcColumn", "IfcMember","IfcBuildingElementProxy"] },
+  { category: "Foundation Slab", buildingSystem: "Foundation", ifcCompatibleElements: ["IfcSlab","IfcBuildingElementProxy"] },
+  { category: "Footing", buildingSystem: "Foundation", ifcCompatibleElements: ["IfcFooting","IfcBuildingElementProxy"] },
 ];
 
 const ProductCategorySchema = RawProductCategorySchema.refine(
