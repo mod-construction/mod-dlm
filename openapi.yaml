@@ -191,6 +191,8 @@ components:
                 - Roof Panel
                 - Roof Truss
                 - Prefabricated Stairs
+                - Foundation Slab
+                - Footing
               description: Specific product category within building systems.
               example: Structural Insulated Panels (SIPs)
             buildingSystem:
@@ -207,6 +209,7 @@ components:
                 - Roofs
                 - Stairs
                 - Structure
+                - Foundation
               description: Building system category to which the product element belongs.
               example: Facade
             ifcCompatibleElements:
@@ -922,6 +925,8 @@ components:
                 - Roof Panel
                 - Roof Truss
                 - Prefabricated Stairs
+                - Foundation Slab
+                - Footing
               description: Specific product category within building systems.
               example: Structural Insulated Panels (SIPs)
             buildingSystem:
@@ -938,6 +943,7 @@ components:
                 - Roofs
                 - Stairs
                 - Structure
+                - Foundation
               description: Building system category to which the product element belongs.
               example: Facade
             ifcCompatibleElements:
